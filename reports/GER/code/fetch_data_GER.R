@@ -1,7 +1,8 @@
 # Setup -------------------------------------------------------------------
+# Angepasst für die Daten von 2005 bis 2013 
 
 library(dplyr)
-if(!exists(c("country", "year"))) {
+if(!exists(c("DE", "2005:2013"))) {
   stop("Please specify country and year.")
 }
 
@@ -52,3 +53,4 @@ silc.pd <- silc.pd %>%
 # Fin ---------------------------------------------------------------------
 
 message("Prepared data for DE")
+
