@@ -12,12 +12,12 @@ if(!exists(c("DE", "2005:2013"))) {
 # Download data
 silc.p <- tbl(pg, "pp") %>%
   filter(pb020 %in% "DE") %>%
-  select(pb020, pb030, pb040, pb150, py010g, py050n, px010, px030) %>%
+  select(pb020, pb030, pb040, pb150, py010g, py050n, px010, px030, py080g) %>%
   collect(n = Inf)
 
 silc.h <- tbl(pg, "hh") %>%
   filter(hb020 %in% "DE") %>%
-  select(hb020, hb030, hy010, hx010) %>%
+  select(hb020, hb030, hy010, hx010, hy110g, hy040g, hy090g) %>%
   collect(n = Inf)
 
 silc.d <- tbl(pg, "dd") %>%
