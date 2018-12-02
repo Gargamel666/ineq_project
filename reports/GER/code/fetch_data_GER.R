@@ -2,7 +2,7 @@
 # Angepasst für die Daten von 2005 bis 2013 
 
 library(dplyr)
-if(!exists(c("DE", "2005:2013"))) {
+if(!exists(c("DE", "2009:2013"))) {
   stop("Please specify country and year.")
 }
 
@@ -11,44 +11,39 @@ if(!exists(c("DE", "2005:2013"))) {
 
 # Download data
 silc.p <- tbl(pg, "pp") %>%
-  filter(pb020 %in% "DE") %>%
-  select(pb020, pb030, pb040, pb150, py010g, py050n, px010, px030, py080g) %>%
+  filter(pb020 %in% "DE" & pb010 %in% c(2009, 2010, 2011,2012, 2013)) %>%
+  select(pb010, pb020, pb030, pb040, pb150, pl060,pl100, py010g, py050g, py080g,
+  py090g, py100g, py110g, py120g, py130g, py140g, py050n, px010, px030) %>% 
   collect(n = Inf)
 
 silc.h <- tbl(pg, "hh") %>%
-  filter(hb020 %in% "DE") %>%
-  select(hb020, hb030, hy010, hx010, hy110g, hy040g, hy090g) %>%
+  filter(hb020 %in% "DE" & hb010 %in% c(2009, 2010, 2011,2012, 2013)) %>%
+  select(hb010, hb020, hb030, hx010, hx050, hy010, hy020, hy110g, hy120g, hy130g,
+  hy140g, hy040g, hy050g, hy060g, hy070g, hy080g, hy090g) %>%
   collect(n = Inf)
 
 silc.d <- tbl(pg, "dd") %>%
-  filter(db020 %in% "DE") %>%
+  filter(db020 %in% "DE" & db010 %in% c(2009, 2010, 2011,2012, 2013)) %>%
   select(db010, db020, db030, db040, db090) %>%
   collect(n = Inf)
 
 silc.r <- tbl(pg, "rr") %>% 
-  filter(rb020 %in% "DE") %>%
-  select(rb010, rb020, rb030, rb050) %>%
+  filter(rb020 %in% "DE" & rb010 %in% c(2009, 2010, 2011,2012, 2013)) %>%
+  select(rb010, rx030, rb020, rb030, rb050) %>%
   collect(n = Inf)
 
-# Create unique IDs for merging
-silc.p <- silc.p %>% mutate(id_h = paste0(pb020, px030))
+# Create unique IDs for merging by country, year, and hh ID
+silc.p <- silc.p %>% mutate(id_h = paste0(pb020, px030, pb010))
 
-silc.h <- silc.h %>% mutate(id_h = paste0(hb020, hb030))
+silc.h <- silc.h %>% mutate(id_h = paste0(hb020, hb030, hb010))
 
-silc.d <- silc.d %>% mutate(id_h = paste0(db020, db030))
+silc.d <- silc.d %>% mutate(id_h = paste0(db020, db030, db010))
 
 # Merge the datasets
-silc.pd <- left_join(silc.p, silc.d %>% select(id_h, db010, db020, db090))
+silc.pd <- left_join(silc.p, silc.d %>% select(id_h, db010, db020, db040, db090))
 
 silc.hd <- left_join(silc.h, silc.d)
 
-
-# Create total personal income --------------------------------------------
-
-# Find string "py" (i.e. income variables) for summing up total personal income. 
-silc.pd <- silc.pd %>% 
-  mutate(total.inc = rowSums(silc.pd[, grep("py", colnames(silc.pd))], 
-                             na.rm = TRUE)) 
 
 # Fin ---------------------------------------------------------------------
 
