@@ -39,6 +39,8 @@ silc.h <- silc.h %>% mutate(id_h = paste0(hb020, hb030, hb010))
 
 silc.d <- silc.d %>% mutate(id_h = paste0(db020, db030, db010))
 
+silc.r <- silc.r %>% mutate(id_h = paste0(rb020, rx030, rb010))
+
 # Merge the datasets
 silc.pd <- left_join(silc.p, silc.d %>% select(id_h, db010, db020, db040, db090))
 
