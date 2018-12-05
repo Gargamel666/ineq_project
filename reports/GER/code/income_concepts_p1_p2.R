@@ -11,8 +11,8 @@ silc.rp <- left_join(silc.r, silc.p)
 # Create age, household ID, gender variables
 silc.rp <- silc.rp %>% 
   mutate(age = rb010 - rb080,
-         gender = factor(rb090,labels = c('Male','Female')),
-         id_h = paste0(rb020,rx030, rb010)) 
+         gender = factor(rb090, labels = c('Male','Female')),
+         id_h = paste0(rb020, rx030, rb010)) 
 
 # Create unique IDs for merging, merge country and household ID h,d
 
@@ -81,7 +81,7 @@ silc.rph <- silc.rph %>%
 silc.rph <- silc.rph %>% 
   add_count(age >= 20, id_h)
 
-# create subset for younger 20----------------------------------------
+# create subset for older 20----------------------------------------
 
 silc.rph.adult <- silc.rph %>% filter(age >= 20)
 
