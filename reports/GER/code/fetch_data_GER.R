@@ -191,7 +191,8 @@ silc.rph <- silc.rph %>%
                           (sum_pincome3 + hy050g + hy060g + hy070g + hy080g 
                            - hy120g - hy130g - hy140g) / hx050)
 
-silc.rph$test <- silc.rph$hy020/silc.rph$hx050
+silc.rph$test <- silc.rph$hy020/silc.rph$hx050 #should be eqaul to income p1_3
+
 
 # P2 WID.WORLD ----------------------------------------------------------------
 
