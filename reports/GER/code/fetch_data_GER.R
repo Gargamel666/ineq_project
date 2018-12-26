@@ -33,7 +33,7 @@ silc.r <- tbl(pg, "rr") %>%
   collect(n = Inf)
 
 
-# Fetch data for 2014-2016 ----------------------------------------------------
+# Dowload data for 2014-2016
 c07p <- tbl(pg, "c07p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
@@ -108,9 +108,9 @@ c16r <- tbl(pg, "c16r") %>% filter(rb020 == 'DE') %>%
 cxxr <- bind_rows(c14r, c15r, c16r)
 silc.r <- full_join(silc.r, cxxr)
 
+# Merge Data Sets-------------------------------------------------------------
 
-
-# generate car variable ----------------------------------------------
+# generate car variable 
 silc.p$car <- silc.p$py020g
 silc.p$car <- ifelse(silc.p$pb010 > 2006, silc.p$py021g, silc.p$car)
 #silc.p <- silc.p %>% mutate(car = replace(car, pb010 > 2006, py021g))
@@ -143,14 +143,12 @@ silc.rph <- left_join(silc.rp, silc.h, by = c("id_h", "rb010" = "hb010",
 # Replace NA's in silc.rph by 0
 silc.rph[is.na(silc.rph)] <- 0
 
-# save data
-setwd("C:/Users/sgust/Docs/ineq_project/data")
-save(silc.rph, file = "silc_rph.RData")
+
 
 
 # P1 EUROSTAT -----------------------------------------------------------------
 
-# Pre-tax factor income (Canberra: primary income) ----------------------------
+# Pre-tax factor income (Canberra: primary income) 
 
 # Sum up personal income
 silc.rph <- silc.rph %>% mutate(pincome1 = py010g + py050g + py080g + car)
@@ -163,7 +161,7 @@ silc.rph <- silc.rph %>% group_by(id_h) %>%
 silc.rph <- silc.rph %>% 
   mutate(income_p1_1 = (sum_pincome1 + hy110g + hy040g + hy090g) / hx050)
 
-# Pre-tax national income -----------------------------------------------------
+# Pre-tax national income 
 
 # Sum up personal income 
 silc.rph <- silc.rph %>% mutate(pincome2 = py090g + py100g)
@@ -176,7 +174,7 @@ silc.rph <- silc.rph %>% group_by(id_h) %>%
 silc.rph <- silc.rph %>%
   mutate(income_p1_2 = income_p1_1 + (sum_pincome2 / hx050))
 
-# Post-tax national income ----------------------------------------------------
+# Post-tax national income 
 
 # Sum up personal income 
 silc.rph <- silc.rph %>% mutate(pincome3 = py110g + py120g + py130g + py140g)
@@ -202,16 +200,16 @@ silc.rph <- silc.rph %>%
 
 # Achtung: Variablen stimmen nur noch für Personen >= 20 Jahre. 
 
-# Pre-tax factor income (Canberra: primary income) ----------------------------
+# Pre-tax factor income (Canberra: primary income) 
 silc.rph <- silc.rph %>%
   mutate(income_p2_1 = py010g + car + py050g + py080g + 
            (hy110g + hy040g + hy090g)/n)
 
-# Pre-tax national income -----------------------------------------------------
+# Pre-tax national income 
 silc.rph <- silc.rph %>%
   mutate(income_p2_2 = income_p2_1 + py090g + py100g)
 
-# Post-tax disposable income --------------------------------------------------
+# Post-tax disposable income 
 silc.rph <- silc.rph %>%
   mutate(income_p2_3 = income_p2_2 + py110g + py120g + py130g + py140g + 
            (hy050g + hy060g + hy070g + hy080g - hy120g - hy130g - hy140g)/n)
@@ -226,5 +224,7 @@ silc.pos.p1 <- silc.rph %>% filter(income_p1_1 > 0, income_p1_2 > 0,
 # Also subset to age >=20
 silc.pos.p2 <- silc.rph %>% filter(income_p2_1 > 0, income_p2_2 > 0, 
                                    income_p2_3 > 0, age >= 20)   
+
+
 
 # Fin -------------------------------------------------------------------------
