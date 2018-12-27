@@ -52,6 +52,15 @@ years_p80p20_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svyqsr,
 
 # Top 10% share
 
+top_p1_1 <- subset(silc.p1.svy, income_p1_1 >= as.numeric(
+  svyquantile(~income_p1_1, silc.p1.svy, quantile=c(0.9))))
+
+topnum_p1_1 <- svyby(~income_p1_1, ~rb010, top_p1_1, svytotal)
+
+topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
+
 # Pre-tax national income -----------------------------------------------------
 
 
@@ -72,7 +81,14 @@ years_p80p20_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svyqsr,
                            0.2, 0.8)
 
 # Top 10% share
+top_p1_2 <- subset(silc.p1.svy, income_p1_2 >= as.numeric(
+  svyquantile(~income_p1_2, silc.p1.svy, quantile=c(0.9))))
 
+topnum_p1_2 <- svyby(~income_p1_2, ~rb010, top_p1_2, svytotal)
+
+topden_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_2 <- topnum_p1_2 / topden_p1_2
 
 # Post-tax disposable income --------------------------------------------------
 
@@ -93,6 +109,16 @@ years_p80p20_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svyqsr,
                            0.2, 0.8)
 
 # Top 10% share
+
+
+top_p1_3 <- subset(silc.p1.svy, income_p1_3 >= as.numeric(
+  svyquantile(~income_p1_3, silc.p1.svy, quantile=c(0.9))))
+
+topnum_p1_3 <- svyby(~income_p1_3, ~rb010, top_p1_3, svytotal)
+
+topden_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_3 <- topnum_p1_3 / topden_p1_3
 
 
 # -----------------------------------------------------------------------------
@@ -119,6 +145,15 @@ years_p80p20_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svyqsr,
 
 # Top 10% share
 
+top_p2_1 <- subset(silc.p2.svy, income_p2_1 >= as.numeric(
+  svyquantile(~income_p2_1, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_1 <- svyby(~income_p2_1, ~rb010, top_p2_1, svytotal)
+
+topden_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_1 <- topnum_p2_1 / topden_p2_1
+
 # Pre-tax national income -----------------------------------------------------
 
 
@@ -141,6 +176,16 @@ years_p80p20_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svyqsr,
 # Top 10% share
 
 
+top_p2_2 <- subset(silc.p2.svy, income_p2_2 >= as.numeric(
+  svyquantile(~income_p2_2, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_2 <- svyby(~income_p2_2, ~rb010, top_p2_2, svytotal)
+
+topden_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_2 <- topnum_p2_2 / topden_p2_2
+
+
 # Post-tax disposable income --------------------------------------------------
 
 # Mean
@@ -161,28 +206,84 @@ years_p80p20_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svyqsr,
 
 # Top 10% share
 
+top_p2_3 <- subset(silc.p2.svy, income_p2_3 >= as.numeric(
+  svyquantile(~income_p2_3, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_3 <- svyby(~income_p2_3, ~rb010, top_p2_3, svytotal)
+
+topden_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_3 <- topnum_p2_3 / topden_p2_3
+
 # Tables ----------------------------------------------------------------------
-#####not yeat working
-measures <-c('Mean', 'Median', 'Gini','P80/P20')
+measures <-c('Mean', 'Median', 'Gini','P80/P20', 'top10%', 'years')
 income_concept <- c('Pre-tax factor income','Pre-tax national income', 
                     'Post-tax disposable income')
 
+
+
 # P1 Eurostat
-pre.tax.fac.p1 <- data.frame(c(years_mean_p1_1, years_median_p1_1, 
-                                     years_gini_p1_1, years_p80p20_p1_1, year = 2005:2013))
 
+# pre-tax factor income
+pre.tax.fac.p1 <- data.frame(years_mean_p1_1, years_median_p1_1, 
+                              years_gini_p1_1, years_p80p20_p1_1, 
+                             years_top10_p1_1, years = c(2005:2016))
 
-pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("se" | "as.factor", colnames(pre.tax.fac.p1))]                             
-#digits=nachkomma
+pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("se", colnames(pre.tax.fac.p1))] 
+pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("rb", colnames(pre.tax.fac.p1))] 
 
 colnames(pre.tax.fac.p1) <- measures
 
-# P2 WID WORLD
-table2 <- data.frame(round(c(mean_p2_1, median_p2_1, gini_p2_1, p80p20_p2_1, 
-                             top10_p2_1), digits = 4),
-                     round(c(mean_p2_2, median_p2_2, gini_p2_2, p80p20_p2_2, 
-                             top10_p2_2), digits = 4), 
-                     round(c(mean_p2_3, median_p2_3, gini_p2_3, p80p20_p2_3, 
-                             top10_p2_3), digits = 4), row.names = measures)
+# pre-tax national income
 
-colnames(table2) <- income_concept
+pre.tax.nat.p1 <- data.frame(years_mean_p1_2, years_median_p1_2, 
+                             years_gini_p1_2, years_p80p20_p1_2, 
+                             years_top10_p1_2, years = c(2005:2016))
+
+pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("se", colnames(pre.tax.nat.p1))] 
+pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("rb", colnames(pre.tax.nat.p1))] 
+
+colnames(pre.tax.nat.p1) <- measures
+
+# post-tax disposable income
+post.tax.p1 <- data.frame(years_mean_p1_3, years_median_p1_3, 
+                             years_gini_p1_3, years_p80p20_p1_3, 
+                             years_top10_p1_3, years = c(2005:2016))
+
+post.tax.p1 <- post.tax.p1[,-grep("se", colnames(post.tax.p1))] 
+post.tax.p1 <- post.tax.p1[,-grep("rb", colnames(post.tax.p1))] 
+
+colnames(post.tax.p1) <- measures
+
+# P2 WID WORLD
+
+# pre-tax factor income
+pre.tax.fac.p2 <- data.frame(years_mean_p2_1, years_median_p2_1, 
+                             years_gini_p2_1, years_p80p20_p2_1, 
+                             years_top10_p2_1, years = c(2005:2016))
+
+pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("se", colnames(pre.tax.fac.p2))] 
+pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("rb", colnames(pre.tax.fac.p2))] 
+
+colnames(pre.tax.fac.p2) <- measures
+
+# pre-tax national income
+
+pre.tax.nat.p2 <- data.frame(years_mean_p2_2, years_median_p2_2, 
+                             years_gini_p2_2, years_p80p20_p2_2, 
+                             years_top10_p2_2, years = c(2005:2016))
+
+pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("se", colnames(pre.tax.nat.p2))] 
+pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("rb", colnames(pre.tax.nat.p2))] 
+
+colnames(pre.tax.nat.p2) <- measures
+
+# post-tax disposable income
+post.tax.p2 <- data.frame(years_mean_p2_3, years_median_p2_3, 
+                          years_gini_p2_3, years_p80p20_p2_3, 
+                          years_top10_p2_3, years = c(2005:2016))
+
+post.tax.p2 <- post.tax.p2[,-grep("se", colnames(post.tax.p2))] 
+post.tax.p2 <- post.tax.p2[,-grep("rb", colnames(post.tax.p2))] 
+
+colnames(post.tax.p2) <- measures
