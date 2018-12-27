@@ -8,6 +8,7 @@ library(dplyr)
 library(survey)
 library(convey)
 
+source("fetch_data_GER.R")
 
 # Creating Survey Objects -----------------------------------------------------
 
@@ -28,10 +29,6 @@ silc.p2.svy <- svydesign(ids =  ~ id_h,
 # P1 EUROSTAT -----------------------------------------------------------------
 
 # Pre-tax factor income (Canberra: primary income) ----------------------------
-#p1.year.svy<--grouped_df(silc.p1.svy, rb010)
-
-#%>%
- # summarise(mean_p1_1 = mean(income_p1_1))
 
 # Mean
 years_mean_p1_1 <- svyby(~income_p1_1,
