@@ -225,6 +225,9 @@ silc.pos.p1 <- silc.rph %>% filter(income_p1_1 > 0, income_p1_2 > 0,
 silc.pos.p2 <- silc.rph %>% filter(income_p2_1 > 0, income_p2_2 > 0, 
                                    income_p2_3 > 0, age >= 20)   
 
-
+#save data (careful first setwd to local folder or /data)
+stop("do not save in git folder!")
+#saveRDS(silc.pos.p1, file="GER_pos_p1.RData")
+#saveRDS(silc.pos.p2, file="GER_pos_p2.RData")
 
 # Fin -------------------------------------------------------------------------

@@ -8,9 +8,15 @@ library(dplyr)
 library(survey)
 library(convey)
 
-source("fetch_data_GER.R")
+#source("fetch_data_GER.R")
 
 # Creating Survey Objects -----------------------------------------------------
+
+#get data 
+
+silc.pos.p1 <- readRDS("GER_pos_p1.RData")
+silc.pos.p2 <- readRDS("GER_pos_p2.RData")
+
 
 silc.p1.svy <- svydesign(ids =  ~ id_h,
                          weights = ~rb050,
@@ -284,3 +290,15 @@ post.tax.p2 <- post.tax.p2[,-grep("se", colnames(post.tax.p2))]
 post.tax.p2 <- post.tax.p2[,-grep("rb", colnames(post.tax.p2))] 
 
 colnames(post.tax.p2) <- measures
+
+# save tables
+
+stop("do not save in git folder!")
+#saveRDS(pre.tax.fac.p1, file="GER_pre_tax_fac_p1_table.RData")
+#saveRDS(pre.tax.nat.p1, file="GER_pre_tax_nat_p1_table.RData")
+#saveRDS(post.tax.p1, file="GER_post_tax_p1_table.RData")
+#saveRDS(pre.tax.fac.p2, file="GER_pre_tax_fac_p2_table.RData")
+#saveRDS(pre.tax.nat.p2, file="GER_pre_tax_nat_p2_table.RData")
+#saveRDS(post.tax.p2, file="GER_post_tax_p2_table.RData")
+
+# Fin -------------------------------------------------------------------------
