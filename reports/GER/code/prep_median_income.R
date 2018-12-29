@@ -14,6 +14,7 @@
 # Rich: more than 250% of Median Income
 
 
+library(laeken)
 library(dplyr)
 library(survey)
 library(convey)
@@ -43,23 +44,28 @@ silc.p2.svy <- svydesign(ids =  ~ id_h,
 
 # create median income for income concepts
 
-silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p11 = median(income_p1_1))
+#or unweighted median since we weight in analysis??
+
+silc.pos.p1 <- silc.pos.p1 %>%
+  mutate(median_p11 = incMedian(income_p1_1, weights = rb050, years = rb010))
 
 silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p12 = median(income_p1_2))
+  mutate(median_p11 = incMedian(income_p1_2, weights = rb050, years = rb010))
 
 silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p13 = median(income_p1_3))
+  mutate(median_p12 = incMedian(income_p1_3, weights = rb050, years = rb010))
+
+silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
+  mutate(median_p13 = incMedian(income_p1_1, weights = rb050, years = rb010))
 
 silc.pos.p2 <- silc.pos.p2 %>% group_by(rb010) %>%
-  mutate(median_p21 = median(income_p2_1))
+  mutate(median_p21 = incMedian(income_p2_1, weights = rb050, years = rb010))
 
 silc.pos.p2 <- silc.pos.p2 %>% group_by(rb010) %>%
-  mutate(median_p22 = median(income_p2_2))
+  mutate(median_p22 = incMedian(income_p2_2, weights = rb050, years = rb010))
 
 silc.pos.p2 <- silc.pos.p2 %>% group_by(rb010) %>%
-  mutate(median_p23 = median(income_p2_3))
+  mutate(median_p23 = incMedian(income_p2_3, weights = rb050, years = rb010))
 
 # create variables with percent of median income 
 
