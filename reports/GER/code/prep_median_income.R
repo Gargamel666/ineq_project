@@ -77,3 +77,49 @@ silc.pos.p2 <- silc.pos.p2 %>% mutate(percent_p21 = income_p2_1/median_p21*100)
 silc.pos.p2 <- silc.pos.p2 %>% mutate(percent_p22 = income_p2_2/median_p22*100)
 silc.pos.p2 <- silc.pos.p2 %>% mutate(percent_p23 = income_p2_3/median_p23*100)
 
+# dummies for middle class (welches einkommenskonzept????)
+
+silc.pos.p1 <- silc.pos.p1 %>% mutate(upmiddle = as.numeric(percent_p13 > 150 
+                                                            & percent_p13 < 250))
+silc.pos.p1 <- silc.pos.p1 %>% mutate(middle = as.numeric(percent_p13 > 80 
+                                                            & percent_p13 < 150))
+
+silc.pos.p1 <- silc.pos.p1 %>% mutate(lowmiddle = as.numeric(percent_p13 > 60 
+                                                            & percent_p13 < 80))
+
+silc.pos.p1 <- silc.pos.p1 %>% mutate(totalmiddle = as.numeric(percent_p13 > 60 
+                                                             & percent_p13 < 250))
+
+
+
+silc.pos.p2 <- silc.pos.p2 %>% mutate(upmiddle = as.numeric(percent_p23 > 150 
+                                                            & percent_p23 < 250))
+silc.pos.p2 <- silc.pos.p2 %>% mutate(middle = as.numeric(percent_p23 > 80 
+                                                          & percent_p23 < 150))
+
+silc.pos.p2 <- silc.pos.p2 %>% mutate(lowmiddle = as.numeric(percent_p23 > 60 
+                                                            & percent_p23 < 80))
+silc.pos.p2 <- silc.pos.p2 %>% mutate(totalmiddle = as.numeric(percent_p23 > 60 
+                                                             & percent_p23 < 250))
+
+
+# table for middle class group over years 
+
+
+middleclass.p1 <-  
+  silc.pos.p1 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
+                                                middlerel = sum(middle)/n(),
+                                                lowerrel = sum(lowmiddle)/n(),
+                                                totalrel = sum(totalmiddle)/n())
+
+
+middleclass.p2 <-  
+  silc.pos.p2 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
+                                                middlerel = sum(middle)/n(),
+                                                lowerrel = sum(lowmiddle)/n(),
+                                                totalrel = sum(totalmiddle)/n())
+
+                                                
+# save data
+saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
+saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
