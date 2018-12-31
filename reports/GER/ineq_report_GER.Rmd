@@ -22,67 +22,67 @@ knitr::opts_chunk$set(echo = TRUE)
 # Einleitung
 
 # Berechnung Allgemeiner Ungleichheitsindikatoren
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 pre.tax.fac.p1 <- readRDS("tables/GER_pre_tax_fac_p1_table.RData")
 kable(pre.tax.fac.p1, caption = "Pre tax factor income - Equal sharing of resources within household")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 pre.tax.fac.p2 <- readRDS("tables/GER_pre_tax_fac_p2_table.RData")
 kable(pre.tax.fac.p2, caption = "Pre tax factor income -  Partial sharing of resources")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 pre.tax.nat.p1 <- readRDS("tables/GER_pre_tax_nat_p1_table.RData")
 kable(pre.tax.nat.p1, caption = "Pre tax national income - Equal sharing of resources within household")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 pre.tax.nat.p2 <- readRDS("tables/GER_pre_tax_nat_p2_table.RData")
 kable(pre.tax.nat.p2, caption = "Pre tax national income - Partial sharing of resources")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 post.tax.p1 <- readRDS("tables/GER_post_tax_p1_table.RData")
 kable(post.tax.p1, caption = "Post tax disposable income - Equal sharing of resources within household")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
 post.tax.p2 <- readRDS("tables/GER_post_tax_p2_table.RData")
 kable(post.tax.p2, caption = "Post tax disposable income - Partial sharing of resources")
 ```
 # Betrachtung der Mittelschicht 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 middleclass.p1 <- readRDS("tables/GER_middleclass_p1.RData")
 kable(middleclass.p1, caption = "Post-tax disposable income - Total")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 middleclass.single <- readRDS("tables/GER_middleclass_single.RData")
 kable(middleclass.single, caption = "Post-tax disposable income - Single Living")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 middleclass.two <- readRDS("tables/GER_middleclass_two.RData")
 kable(middleclass.two, caption = "Post-tax disposable income - Two Children")
 ```
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 middleclass.old <- readRDS("tables/GER_middleclass_two.RData")
 kable(middleclass.old, caption = "Post-tax disposable income - Older")
