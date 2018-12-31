@@ -1,16 +1,16 @@
 ---
 title: "Einkommensverteilung in Österreich"
 subtitle: "2063 - Ökonomie der Verteilung"
-author: "Nikolas Kuschnig & Casper Engelen"
-abstract: "Dieses Dokument stellt einige Funktionen von Rmarkdown vor und bietet eine simple Grundstruktur für Länder-Reports."
-keywords: "a, b, c"
+author: "Sarah Gust & Hubert Weiß"
+abstract: "Dieses Dokument ..."
+keywords: "inequality"
 date: '`r format(Sys.time(), "%d %B, %Y")`'
 output: 
   pdf_document:
     toc: true
     includes: 
       in_header: header.tex
-bibliography: references.bib
+
 ---
 
 ```{r setup, include=FALSE}
@@ -19,99 +19,71 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \newpage
 
-# Rmarkdown Demonstration
+# Einleitung
 
-```{r, include=FALSE}
-cat("Ausgeführt, nichts angezeigt")
-```
-
-```{r, eval=FALSE}
-cat("Nicht ausgeführt, angezeigt")
-```
-
-```{r echo=FALSE}
-cat("Ausgeführt, Output angezeigt")
+# Berechnung Allgemeiner Ungleichheitsindikatoren
+```{r}
+library(knitr)
+options(digits = 4)
+pre.tax.fac.p1 <- readRDS("tables/GER_pre_tax_fac_p1_table.RData")
+kable(pre.tax.fac.p1, caption = "Pre tax factor income - Equal sharing of resources within household")
 ```
 
 ```{r}
-cat("Ausgeführt, alles angezeigt")
+library(knitr)
+options(digits = 4)
+pre.tax.fac.p2 <- readRDS("tables/GER_pre_tax_fac_p2_table.RData")
+kable(pre.tax.fac.p2, caption = "Pre tax factor income -  Partial sharing of resources")
 ```
 
-<!-- Kommentare im Dokument -->
-
-Text *kursiv* und **fett**.
-
-R-Code im Text: `r pi`
-
-LaTeX Formeln inline: ($e = mc^2$) und:
-
-$$\hat{\beta} = (X'X)^{-1}X'Y$$
-
-![Bilder einfügen (xkcd)](img/xkcd_comparison.png){width=60%}
-
-[Links einfügen (Bildquelle)](https://what-if.xkcd.com/118/)
-
-Zitieren aus *BibTeX*:
-
-- [@marmot2010fair; @lancee2012income]
-- [@humer2013bedeutung, p. 571]
-- @humer2013bedeutung
-
-Block-Zitate:
-
-> "Don't quote me on that."
-
-Ungeordnete Listen:
-
-- Einkommen
-- Kapital
-
-Geordnete Listen:
-
-1. Zahlen
-3. sind
-9. egal
-
-Simple Tabellen:
-<!-- Leerzeichen sind egal -->
-
-|Country  | Gini  | Theil | QSR |
-| ---     | ---   | ---   | --- |
-| AUT     | 1     | 0.5   | NA  |
-
-R-Plots:
-
-```{r fig-rnorm, echo=FALSE, fig.cap="Inklusive Optionen", fig.width=4}
-plot(rnorm(50), rnorm(50))
+```{r}
+library(knitr)
+options(digits = 4)
+pre.tax.nat.p1 <- readRDS("tables/GER_pre_tax_nat_p1_table.RData")
+kable(pre.tax.nat.p1, caption = "Pre tax national income - Equal sharing of resources within household")
 ```
 
-Potentiell weniger simple Tabellen:
-
-```{r echo=FALSE, }
-# Read CSV data, "../../" to look two levels upwards
-table <- read.csv("tables/_template-table.csv")
-knitr::kable(table, caption = "Mit Optionen")
+```{r}
+library(knitr)
+options(digits = 4)
+pre.tax.nat.p2 <- readRDS("tables/GER_pre_tax_nat_p2_table.RData")
+kable(pre.tax.nat.p2, caption = "Pre tax national income - Partial sharing of resources")
 ```
 
-Horizontale Linien:
+```{r}
+library(knitr)
+options(digits = 4)
+post.tax.p1 <- readRDS("tables/GER_post_tax_p1_table.RData")
+kable(post.tax.p1, caption = "Post tax disposable income - Equal sharing of resources within household")
+```
 
----
+```{r}
+library(knitr)
+options(digits = 4)
+post.tax.p2 <- readRDS("tables/GER_post_tax_p2_table.RData")
+kable(post.tax.p2, caption = "Post tax disposable income - Partial sharing of resources")
+```
+# Betrachtung der Mittelschicht 
+```{r}
+library(knitr)
+middleclass.p1 <- readRDS("tables/GER_middleclass_p1.RData")
+kable(middleclass.p1, caption = "Post-tax disposable income - Total")
+```
 
-\newpage
+```{r}
+library(knitr)
+middleclass.single <- readRDS("tables/GER_middleclass_single.RData")
+kable(middleclass.single, caption = "Post-tax disposable income - Single Living")
+```
 
-# Einführung
+```{r}
+library(knitr)
+middleclass.two <- readRDS("tables/GER_middleclass_two.RData")
+kable(middleclass.two, caption = "Post-tax disposable income - Two Children")
+```
 
-# Methodologie
-
-## Daten
-
-## Indikatoren
-
-# Ergebnisse
-
-# Zusammenfassung
-
-
-# Literatur
-
-<!-- Leer lassen -->
+```{r}
+library(knitr)
+middleclass.old <- readRDS("tables/GER_middleclass_two.RData")
+kable(middleclass.old, caption = "Post-tax disposable income - Older")
+```
