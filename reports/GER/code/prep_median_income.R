@@ -101,55 +101,62 @@ silc.pos.p2 <- silc.pos.p2 %>% mutate(totalmiddle = as.numeric(percent_p23 > 60
                                                              & percent_p23 < 250))
 
 
-# table for middle class group over years for all people
+# table for middle class group ---------------------------------------------
+
+headers <- c('Year', 'Upper Middle', 'Middle', 'Lower Middle', 'Total Middle', 'Median Income')
+options(digits = 4)
+
+# all people
 
 
 middleclass.p1 <-  
-  silc.pos.p1 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
-                                                middlerel = sum(middle)/n(),
-                                                lowerrel = sum(lowmiddle)/n(),
-                                                totalrel = sum(totalmiddle)/n(),
+  silc.pos.p1 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n()*100,
+                                                middlerel = sum(middle)/n()*100,
+                                                lowerrel = sum(lowmiddle)/n()*100,
+                                                totalrel = sum(totalmiddle)/n()*100,
                                                 median_p13 = incMedian(income_p1_3, weights = rb050,
                                                                       years = rb010))
-
-middleclass.p1 <-  silc.pos.p1 %>% group_by(rb010) %>% summarise 
+colnames(middleclass.p1) <- headers
 
 middleclass.p2 <-  
-  silc.pos.p2 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
-                                                middlerel = sum(middle)/n(),
-                                                lowerrel = sum(lowmiddle)/n(),
-                                                totalrel = sum(totalmiddle)/n(),
+  silc.pos.p2 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n()*100,
+                                                middlerel = sum(middle)/n()*100,
+                                                lowerrel = sum(lowmiddle)/n()*100,
+                                                totalrel = sum(totalmiddle)/n()*100,
                                                 median_p23 = incMedian(income_p2_3, weights = rb050,
                                                                        years = rb010))
-
+colnames(middleclass.p2) <- headers
                                                 
-# save data
-saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
-saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
+
 
 # table percent middle class for single adult hh
 
 silc.single <- silc.pos.p1 %>% filter(hx040 == 1 & age > 20 & age < 65)
 middleclass.single <-  
-  silc.single%>% group_by(rb010) %>% summarise(upper_single = sum(upmiddle)/n(),
-                                                middle_single = sum(middle)/n(),
-                                                lower_single = sum(lowmiddle)/n(),
-                                                total_single = sum(totalmiddle)/n(),
+  silc.single%>% group_by(rb010) %>% summarise(upper_single = sum(upmiddle)/n()*100,
+                                                middle_single = sum(middle)/n()*100,
+                                                lower_single = sum(lowmiddle)/n()*100,
+                                                total_single = sum(totalmiddle)/n()*100,
                                                median_p13_single = incMedian(income_p1_3, 
                                                                       weights = rb050,
                                                                       years = rb010))
+colnames(middleclass.single) <- headers
+
 
 # table percent middle class for old
 
 silc.old <- silc.pos.p1 %>% filter(age > 65)
 middleclass.old <-  
-  silc.old%>% group_by(rb010) %>% summarise(upper_old= sum(upmiddle)/n(),
-                                               middle_old = sum(middle)/n(),
-                                               lower_old = sum(lowmiddle)/n(),
-                                               total_old = sum(totalmiddle)/n(),
+  silc.old%>% group_by(rb010) %>% summarise(upper_old= sum(upmiddle)/n()*100,
+                                               middle_old = sum(middle)/n()*100,
+                                               lower_old = sum(lowmiddle)/n()*100,
+                                               total_old = sum(totalmiddle)/n()*100,
                                             median_p13_old = incMedian(income_p1_3, 
                                                                        weights = rb050,
                                                                    years = rb010))
+
+colnames(middleclass.old) <- headers
+
 
 # table middle class with two children (needs adjustment load parents id)
 silc.pos.p1 <- silc.pos.p1 %>% mutate(child = as.numeric(age <= 17))
@@ -161,21 +168,34 @@ silc.pos.p1 <- silc.pos.p1 %>%
 silc.two <- silc.pos.p1 %>% filter(children == 2)
 
 middleclass.two <-  
-  silc.two%>% group_by(rb010) %>% summarise(upper_two = sum(upmiddle)/n(),
-                                               middle_two = sum(middle)/n(),
-                                               lower_two = sum(lowmiddle)/n(),
-                                               total_two = sum(totalmiddle)/n(),
+  silc.two%>% group_by(rb010) %>% summarise(upper_two = sum(upmiddle)/n()*100,
+                                               middle_two = sum(middle)/n()*100,
+                                               lower_two = sum(lowmiddle)/n()*100,
+                                               total_two = sum(totalmiddle)/n()*100,
                                             median_p13_two = incMedian(income_p1_3, 
                                                                        weights = rb050,
                                                                    years = rb010))
+colnames(middleclass.two) <- headers
+
+
 # filter for more than two children 
 silc.many <- silc.pos.p1 %>% filter(children > 2)
 
 middleclass.many <-  
-  silc.many%>% group_by(rb010) %>% summarise(upper_many = sum(upmiddle)/n(),
-                                            middle_many = sum(middle)/n(),
-                                            lower_many = sum(lowmiddle)/n(),
-                                            total_many = sum(totalmiddle)/n(),
+  silc.many%>% group_by(rb010) %>% summarise(upper_many = sum(upmiddle)/n()*100,
+                                            middle_many = sum(middle)/n()*100,
+                                            lower_many = sum(lowmiddle)/n()*100,
+                                            total_many = sum(totalmiddle)/n()*100,
                                             median_p13_many = incMedian(income_p1_3, 
                                                                         weights = rb050,
                                                                    years = rb010))
+colnames(middleclass.many) <- headers
+
+# save tables
+# save data
+saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
+saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
+saveRDS(middleclass.many, file="GER_middleclass_many.RData")
+saveRDS(middleclass.two, file="GER_middleclass_two.RData")
+saveRDS(middleclass.single, file="GER_middleclass_single.RData")
+saveRDS(middleclass.old, file="GER_middleclass_old.RData")
