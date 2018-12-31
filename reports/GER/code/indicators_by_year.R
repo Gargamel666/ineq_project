@@ -219,7 +219,7 @@ topden_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal)
 years_top10_p2_3 <- topnum_p2_3 / topden_p2_3
 
 # Tables ----------------------------------------------------------------------
-measures <-c('Mean', 'Median', 'Gini','P80/P20', 'top10%', 'years')
+measures <-c('Years', 'Mean', 'Median', 'Gini','P80/P20', 'Top10')
 income_concept <- c('Pre-tax factor income','Pre-tax national income', 
                     'Post-tax disposable income')
 
@@ -228,9 +228,9 @@ income_concept <- c('Pre-tax factor income','Pre-tax national income',
 # P1 Eurostat
 
 # pre-tax factor income
-pre.tax.fac.p1 <- data.frame(years_mean_p1_1, years_median_p1_1, 
+pre.tax.fac.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_1, years_median_p1_1, 
                               years_gini_p1_1, years_p80p20_p1_1, 
-                             years_top10_p1_1, years = c(2005:2016))
+                             years_top10_p1_1, row.names=NULL)
 
 pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("se", colnames(pre.tax.fac.p1))] 
 pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("rb", colnames(pre.tax.fac.p1))] 
@@ -239,9 +239,9 @@ colnames(pre.tax.fac.p1) <- measures
 
 # pre-tax national income
 
-pre.tax.nat.p1 <- data.frame(years_mean_p1_2, years_median_p1_2, 
+pre.tax.nat.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_2, years_median_p1_2, 
                              years_gini_p1_2, years_p80p20_p1_2, 
-                             years_top10_p1_2, years = c(2005:2016))
+                             years_top10_p1_2, row.names=NULL)
 
 pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("se", colnames(pre.tax.nat.p1))] 
 pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("rb", colnames(pre.tax.nat.p1))] 
@@ -249,9 +249,9 @@ pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("rb", colnames(pre.tax.nat.p1))]
 colnames(pre.tax.nat.p1) <- measures
 
 # post-tax disposable income
-post.tax.p1 <- data.frame(years_mean_p1_3, years_median_p1_3, 
+post.tax.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_3, years_median_p1_3, 
                              years_gini_p1_3, years_p80p20_p1_3, 
-                             years_top10_p1_3, years = c(2005:2016))
+                             years_top10_p1_3, row.names=NULL)
 
 post.tax.p1 <- post.tax.p1[,-grep("se", colnames(post.tax.p1))] 
 post.tax.p1 <- post.tax.p1[,-grep("rb", colnames(post.tax.p1))] 
@@ -261,9 +261,9 @@ colnames(post.tax.p1) <- measures
 # P2 WID WORLD
 
 # pre-tax factor income
-pre.tax.fac.p2 <- data.frame(years_mean_p2_1, years_median_p2_1, 
+pre.tax.fac.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_1, years_median_p2_1, 
                              years_gini_p2_1, years_p80p20_p2_1, 
-                             years_top10_p2_1, years = c(2005:2016))
+                             years_top10_p2_1, row.names=NULL)
 
 pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("se", colnames(pre.tax.fac.p2))] 
 pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("rb", colnames(pre.tax.fac.p2))] 
@@ -272,9 +272,9 @@ colnames(pre.tax.fac.p2) <- measures
 
 # pre-tax national income
 
-pre.tax.nat.p2 <- data.frame(years_mean_p2_2, years_median_p2_2, 
+pre.tax.nat.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_2, years_median_p2_2, 
                              years_gini_p2_2, years_p80p20_p2_2, 
-                             years_top10_p2_2, years = c(2005:2016))
+                             years_top10_p2_2, row.names=NULL)
 
 pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("se", colnames(pre.tax.nat.p2))] 
 pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("rb", colnames(pre.tax.nat.p2))] 
@@ -282,23 +282,36 @@ pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("rb", colnames(pre.tax.nat.p2))]
 colnames(pre.tax.nat.p2) <- measures
 
 # post-tax disposable income
-post.tax.p2 <- data.frame(years_mean_p2_3, years_median_p2_3, 
+post.tax.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_3, years_median_p2_3, 
                           years_gini_p2_3, years_p80p20_p2_3, 
-                          years_top10_p2_3, years = c(2005:2016))
+                          years_top10_p2_3, row.names=NULL)
 
 post.tax.p2 <- post.tax.p2[,-grep("se", colnames(post.tax.p2))] 
 post.tax.p2 <- post.tax.p2[,-grep("rb", colnames(post.tax.p2))] 
 
 colnames(post.tax.p2) <- measures
 
+# express Gini and top10% in percent
+pre.tax.fac.p1 <- pre.tax.fac.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.fac.p2 <- pre.tax.fac.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.nat.p1 <- pre.tax.nat.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.nat.p2 <- pre.tax.nat.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+post.tax.p1 <- post.tax.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+post.tax.p2 <- post.tax.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
 # save tables
 
-stop("do not save in git folder!")
-#saveRDS(pre.tax.fac.p1, file="GER_pre_tax_fac_p1_table.RData")
-#saveRDS(pre.tax.nat.p1, file="GER_pre_tax_nat_p1_table.RData")
-#saveRDS(post.tax.p1, file="GER_post_tax_p1_table.RData")
-#saveRDS(pre.tax.fac.p2, file="GER_pre_tax_fac_p2_table.RData")
-#saveRDS(pre.tax.nat.p2, file="GER_pre_tax_nat_p2_table.RData")
-#saveRDS(post.tax.p2, file="GER_post_tax_p2_table.RData")
+stop("switch to table folder!")
+saveRDS(pre.tax.fac.p1, file="GER_pre_tax_fac_p1_table.RData")
+saveRDS(pre.tax.nat.p1, file="GER_pre_tax_nat_p1_table.RData")
+saveRDS(post.tax.p1, file="GER_post_tax_p1_table.RData")
+saveRDS(pre.tax.fac.p2, file="GER_pre_tax_fac_p2_table.RData")
+saveRDS(pre.tax.nat.p2, file="GER_pre_tax_nat_p2_table.RData")
+saveRDS(post.tax.p2, file="GER_post_tax_p2_table.RData")
 
 # Fin -------------------------------------------------------------------------
