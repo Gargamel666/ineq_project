@@ -4,7 +4,7 @@
 
 # ------------------------------------------------------------------------
 #
-# Prepare Data for Middle Class Indicator R-Script
+# Fetch Data for Middle Class Indicator HH R-Script
 #
 # -------------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ library(dplyr)
 # Download data
 silc.p <- tbl(pg, "pp") %>%
   filter(pb020 == 'DE') %>%
-  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140) %>%
+  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140, pe010) %>%
   collect(n = Inf)
 
 silc.h <- tbl(pg, "hh") %>%
@@ -33,15 +33,15 @@ silc.r <- tbl(pg, "rr") %>%
 
 
 c14p <- tbl(pg, "c14p") %>% filter(pb020 == 'DE') %>% 
-  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140) %>% collect(n = Inf)
+  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140, pe010) %>% collect(n = Inf)
 
 c15p <- tbl(pg, "c15p") %>% filter(pb020 == 'DE') %>% 
-  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140) %>% collect(n = Inf)
+  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140, pe010) %>% collect(n = Inf)
 
 c16p <- tbl(pg, "c16p") %>% filter(pb020 == 'DE') %>% 
-  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140) %>% collect(n = Inf)
+  select(pb010, pb030, pb170, pb160, pb210, pl040, pl140,pe010) %>% collect(n = Inf)
 
-cxxp <- bind_rows(c07p, c08p, c09p, c10p, c11p, c12p, c13p, c14p, c15p, c16p)
+cxxp <- bind_rows(c14p, c15p, c16p)
 silc.p <- full_join(silc.p, cxxp) 
 
 
@@ -107,9 +107,21 @@ silc.rph <- left_join(silc.rp, silc.h, by = c("id_h", "rb010" = "hb010",
 silc.rph[is.na(silc.rph)] <- 0
 
 
-# create variable n with number of children
-
+# create dummy for dependent child (below 18 or below 24 and still schooling)
+#source https://ec.europa.eu/eurostat/statistics-explained/index.php?title=EU_statistics_on_income_and_living_conditions_(EU-SILC)_methodology_%E2%80%93_concepts_and_contents&oldid=373925
+silc.rph <- silc.rph %>% mutate(child = as.numeric(age <= 17))
+silc.rph$child[(silc.rph$rb220 != 0 | silc.rph$rb230 !=0 ) & silc.rph$age <= 24] <- 1
 silc.rph <- silc.rph %>% 
-  add_count(age <= 20, id_h)
+  group_by(id_h) %>%
+  mutate(children = sum(child))
 
 
+#create subset with positive income, we use equalised disposible hh income
+# hx090 is also used for poverty risc caculation in silc 
+
+silc.pos <- silc.rph %>% filter(hx090 > 0)  
+
+#save data (careful first setwd to local folder or /data)
+stop("do not save in git folder!")
+#(silc.pos, file="GER_pos_hh.RData")
+# Fin -------------------------------------------------------------------------
