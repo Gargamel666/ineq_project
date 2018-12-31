@@ -46,17 +46,15 @@ silc.p2.svy <- svydesign(ids =  ~ id_h,
 
 #or unweighted median since we weight in analysis??
 
-silc.pos.p1 <- silc.pos.p1 %>%
+silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
   mutate(median_p11 = incMedian(income_p1_1, weights = rb050, years = rb010))
 
 silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p11 = incMedian(income_p1_2, weights = rb050, years = rb010))
+  mutate(median_p12 = incMedian(income_p1_2, weights = rb050, years = rb010))
 
 silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p12 = incMedian(income_p1_3, weights = rb050, years = rb010))
+  mutate(median_p13 = incMedian(income_p1_3, weights = rb050, years = rb010))
 
-silc.pos.p1 <- silc.pos.p1 %>% group_by(rb010) %>%
-  mutate(median_p13 = incMedian(income_p1_1, weights = rb050, years = rb010))
 
 silc.pos.p2 <- silc.pos.p2 %>% group_by(rb010) %>%
   mutate(median_p21 = incMedian(income_p2_1, weights = rb050, years = rb010))
@@ -103,23 +101,81 @@ silc.pos.p2 <- silc.pos.p2 %>% mutate(totalmiddle = as.numeric(percent_p23 > 60
                                                              & percent_p23 < 250))
 
 
-# table for middle class group over years 
+# table for middle class group over years for all people
 
 
 middleclass.p1 <-  
   silc.pos.p1 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
                                                 middlerel = sum(middle)/n(),
                                                 lowerrel = sum(lowmiddle)/n(),
-                                                totalrel = sum(totalmiddle)/n())
+                                                totalrel = sum(totalmiddle)/n(),
+                                                median_p13 = incMedian(income_p1_3, weights = rb050,
+                                                                      years = rb010))
 
+middleclass.p1 <-  silc.pos.p1 %>% group_by(rb010) %>% summarise 
 
 middleclass.p2 <-  
   silc.pos.p2 %>% group_by(rb010) %>% summarise(upperrel = sum(upmiddle)/n(),
                                                 middlerel = sum(middle)/n(),
                                                 lowerrel = sum(lowmiddle)/n(),
-                                                totalrel = sum(totalmiddle)/n())
+                                                totalrel = sum(totalmiddle)/n(),
+                                                median_p23 = incMedian(income_p2_3, weights = rb050,
+                                                                       years = rb010))
 
                                                 
 # save data
 saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
 saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
+
+# table percent middle class for single adult hh
+
+silc.single <- silc.pos.p1 %>% filter(hx040 == 1 & age > 20 & age < 65)
+middleclass.single <-  
+  silc.single%>% group_by(rb010) %>% summarise(upper_single = sum(upmiddle)/n(),
+                                                middle_single = sum(middle)/n(),
+                                                lower_single = sum(lowmiddle)/n(),
+                                                total_single = sum(totalmiddle)/n(),
+                                               median_p13_single = incMedian(income_p1_3, 
+                                                                      weights = rb050,
+                                                                      years = rb010))
+
+# table percent middle class for old
+
+silc.old <- silc.pos.p1 %>% filter(age > 65)
+middleclass.old <-  
+  silc.old%>% group_by(rb010) %>% summarise(upper_old= sum(upmiddle)/n(),
+                                               middle_old = sum(middle)/n(),
+                                               lower_old = sum(lowmiddle)/n(),
+                                               total_old = sum(totalmiddle)/n(),
+                                            median_p13_old = incMedian(income_p1_3, 
+                                                                       weights = rb050,
+                                                                   years = rb010))
+
+# table middle class with two children (needs adjustment load parents id)
+silc.pos.p1 <- silc.pos.p1 %>% mutate(child = as.numeric(age <= 17))
+silc.pos.p1 <- silc.pos.p1 %>% 
+  group_by(id_h) %>%
+  mutate(children = sum(child))
+
+# filter for two children
+silc.two <- silc.pos.p1 %>% filter(children == 2)
+
+middleclass.two <-  
+  silc.two%>% group_by(rb010) %>% summarise(upper_two = sum(upmiddle)/n(),
+                                               middle_two = sum(middle)/n(),
+                                               lower_two = sum(lowmiddle)/n(),
+                                               total_two = sum(totalmiddle)/n(),
+                                            median_p13_two = incMedian(income_p1_3, 
+                                                                       weights = rb050,
+                                                                   years = rb010))
+# filter for more than two children 
+silc.many <- silc.pos.p1 %>% filter(children > 2)
+
+middleclass.many <-  
+  silc.many%>% group_by(rb010) %>% summarise(upper_many = sum(upmiddle)/n(),
+                                            middle_many = sum(middle)/n(),
+                                            lower_many = sum(lowmiddle)/n(),
+                                            total_many = sum(totalmiddle)/n(),
+                                            median_p13_many = incMedian(income_p1_3, 
+                                                                        weights = rb050,
+                                                                   years = rb010))
