@@ -228,7 +228,7 @@ income_concept <- c('Pre-tax factor income','Pre-tax national income',
 # P1 Eurostat
 
 # pre-tax factor income
-pre.tax.fac.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_1, years_median_p1_1, 
+pre.tax.fac.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_1, years_median_p1_1, 
                               years_gini_p1_1, years_p80p20_p1_1, 
                              years_top10_p1_1, row.names=NULL)
 
@@ -239,7 +239,7 @@ colnames(pre.tax.fac.p1) <- measures
 
 # pre-tax national income
 
-pre.tax.nat.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_2, years_median_p1_2, 
+pre.tax.nat.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_2, years_median_p1_2, 
                              years_gini_p1_2, years_p80p20_p1_2, 
                              years_top10_p1_2, row.names=NULL)
 
@@ -249,7 +249,7 @@ pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("rb", colnames(pre.tax.nat.p1))]
 colnames(pre.tax.nat.p1) <- measures
 
 # post-tax disposable income
-post.tax.p1 <- data.frame(Years = c(2005:2016), years_mean_p1_3, years_median_p1_3, 
+post.tax.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_3, years_median_p1_3, 
                              years_gini_p1_3, years_p80p20_p1_3, 
                              years_top10_p1_3, row.names=NULL)
 
@@ -261,7 +261,7 @@ colnames(post.tax.p1) <- measures
 # P2 WID WORLD
 
 # pre-tax factor income
-pre.tax.fac.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_1, years_median_p2_1, 
+pre.tax.fac.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_1, years_median_p2_1, 
                              years_gini_p2_1, years_p80p20_p2_1, 
                              years_top10_p2_1, row.names=NULL)
 
@@ -272,7 +272,7 @@ colnames(pre.tax.fac.p2) <- measures
 
 # pre-tax national income
 
-pre.tax.nat.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_2, years_median_p2_2, 
+pre.tax.nat.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_2, years_median_p2_2, 
                              years_gini_p2_2, years_p80p20_p2_2, 
                              years_top10_p2_2, row.names=NULL)
 
@@ -282,7 +282,7 @@ pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("rb", colnames(pre.tax.nat.p2))]
 colnames(pre.tax.nat.p2) <- measures
 
 # post-tax disposable income
-post.tax.p2 <- data.frame(Years = c(2005:2016), years_mean_p2_3, years_median_p2_3, 
+post.tax.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_3, years_median_p2_3, 
                           years_gini_p2_3, years_p80p20_p2_3, 
                           years_top10_p2_3, row.names=NULL)
 
