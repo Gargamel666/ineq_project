@@ -67,7 +67,7 @@ c16p <- tbl(pg, "c16p") %>% filter(pb020 == 'DE') %>%
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
          py120g, py130g, py140g, py021g) %>% collect(n = Inf)
 
-c17p <- tbl(pg, "c16p") %>% filter(pb020 == 'DE') %>% 
+c17p <- tbl(pg, "c17p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
          py120g, py130g, py140g, py021g) %>% collect(n = Inf)
 
