@@ -8,11 +8,11 @@ library(dygraphs)
 library(xts)
 
 # load median income 
-middleclass.p1 <- readRDS("reports/GER/tables/GER_middleclass_p1.RData")
-middleclass.p2 <- readRDS("reports/GER/tables/GER_middleclass_p2.RData")
-middleclass.two <- readRDS("reports/GER/tables/GER_middleclass_two.RData")
-middleclass.single <- readRDS("reports/GER/tables/GER_middleclass_single.RData")
-middleclass.old <- readRDS("reports/GER/tables/GER_middleclass_old.RData")
+middleclass.p1 <- readRDS("GER_middleclass_p1.RData")
+middleclass.p2 <- readRDS("GER_middleclass_p2.RData")
+middleclass.two <- readRDS("GER_middleclass_two.RData")
+middleclass.single <- readRDS("GER_middleclass_single.RData")
+middleclass.old <- readRDS("GER_middleclass_old.RData")
 
 names <- c('year', 'upper', 'middle', 'lower', 'total', 'median')
 colnames(middleclass.p1) <- names
