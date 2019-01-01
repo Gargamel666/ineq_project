@@ -22,6 +22,15 @@ knitr::opts_chunk$set(echo = TRUE)
 # Einleitung
 
 # Berechnung Allgemeiner Ungleichheitsindikatoren
+
+##Daten und Berechnungen
+Als Datengrundlage verwenden wir die EU-Statistik über Einkommen und Lebensbedingungen (EU Statistics on Income and Living Conditions – EU-SILC) von 2005 bis 2017. Zur Berechunung der Ungleichheitsentwicklung in Deutschland wurden drei verschiedene Einkommenskomponenten herangezogen. Das vorsteuerliche Faktoreinkommen (Pre-tax factor income) umfasst Arbeits- und Vermögenseinkommen. Die entsprechenden Ungleichheitsindikatoren geben wieder, wie hoch die Ungleichheit in Deutschalnd wäre, gäbe es kein öffentliches Transfersytem. Das Pre-tax national income erfasst zusätzlich Pensionen und Arbeitslosengeld. Das nachsteurliche, verfügbare Einkommen (Post-tax disposable income) zeigt, wie der Staat die Verteilung der verfügbaren Einkommen durch Steuern und Sozialleistungen beeinflusst. Diese Einkommenskonzepte wurden auf jeweils zwei unterschiedliche Arten aufgeteilt: 1. Auf alle Haushaltsmitglieder (equal sharing of resources within household) und 2. auf alle Haushaltsmitglieder, die älter als 19 Jahre sind (partial sharing of resources). 
+
+##Ergebnisse
+Die folgenden Tabellen zeigen, wie sich die Ungleichheit in Deutschland zwischen 2005 und 2017 verändert hat. Der Mittelwert und der Median des vorsteuerlichen Faktoreinkommen (Tablle 1) ist insgesamt zwischen 2005 und 2017 angestigen. Lediglich 2006 gab es einen Rückgang im Vergleich zum Vorjahr. Der Gini-Koeffizient stieg bis 2008 an und ging danach wieder leicht zurück. Die P80/P20-Ratio stiegt nach 2005 zunächst deutlich an und zeigt seither ein wechselhaftes Bild mit einem Peak im Jahr 2011. Der Einlkommensanteil der reichsten zehn Prozent ist seit 2005 stark gestiegen. Es gibt keine großen Unterschiede der Mittelwerte, wenn man sie durch alle oder nur durch die erwachsenen Haushalte teilt (vgl. Tabelle 1 und 2). Jedoch geht der Median bei den erwachsenen Haushaltsmitgliedern bis 2009 stärker zurück. Der Gini-Koeffizient und der Einkommensanteil der oberen zehn Prozent sind bei den erwachsenen Haushaltsmitgliedern insgesamt etwas höher, als unter Einbezug der 20-Jährigen. Die P80/P20-Ratio ist in Tabelle 2 um ein Vielfaches erhöht.
+
+Mittelwert und Median sind beim Pre-tax national income insgesamt etwas höher, da hier Pensionen und Arbeitslosengelder mit einbezogen sind. 
+
 ```{r echo=FALSE}
 library(knitr)
 options(digits = 4)
@@ -63,6 +72,8 @@ options(digits = 4)
 post.tax.p2 <- readRDS("tables/GER_post_tax_p2_table.RData")
 kable(post.tax.p2, caption = "Post tax disposable income - Partial sharing of resources")
 ```
+
+
 # Betrachtung der Mittelschicht 
 ```{r echo=FALSE}
 library(knitr)
