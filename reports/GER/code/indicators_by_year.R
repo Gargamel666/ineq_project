@@ -41,8 +41,8 @@ years_mean_p1_1 <- svyby(~income_p1_1,
                          ~as.factor(rb010), silc.p1.svy, svymean)
 
 # Median
-years_median_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -50,8 +50,7 @@ years_median_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy,
 years_gini_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svygini)
 
 # P80/P20
-years_p80p20_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
 
@@ -71,8 +70,8 @@ years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
 years_mean_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svymean)
 
 # Median
-years_median_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -80,8 +79,7 @@ years_median_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy,
 years_gini_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svygini)
 
 # P80/P20
-years_p80p20_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
 top_p1_2 <- subset(silc.p1.svy, income_p1_2 >= as.numeric(
@@ -99,8 +97,8 @@ years_top10_p1_2 <- topnum_p1_2 / topden_p1_2
 years_mean_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svymean)
 
 # Median
-years_median_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -108,8 +106,7 @@ years_median_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy,
 years_gini_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svygini)
 
 # P80/P20
-years_p80p20_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
 
@@ -134,8 +131,8 @@ years_top10_p1_3 <- topnum_p1_3 / topden_p1_3
 years_mean_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svymean)
 
 # Median
-years_median_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -143,8 +140,7 @@ years_median_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy,
 years_gini_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svygini)
 
 # P80/P20
-years_p80p20_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
@@ -164,8 +160,8 @@ years_top10_p2_1 <- topnum_p2_1 / topden_p2_1
 years_mean_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svymean)
 
 # Median
-years_median_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -173,8 +169,7 @@ years_median_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy,
 years_gini_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svygini)
 
 # P80/P20
-years_p80p20_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
@@ -195,8 +190,8 @@ years_top10_p2_2 <- topnum_p2_2 / topden_p2_2
 years_mean_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svymean)
 
 # Median
-years_median_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy,
-                           svyquantile, ~total.inc, quantiles = c(0.5), 
+years_median_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
                            keep.var = FALSE)
 
 
@@ -204,8 +199,7 @@ years_median_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy,
 years_gini_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svygini)
 
 # P80/P20
-years_p80p20_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svyqsr, 
-                           0.2, 0.8)
+years_p80p20_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
