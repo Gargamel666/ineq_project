@@ -27,7 +27,7 @@ library(convey)
 
 silc.pos.p1 <- readRDS("GER_pos_p1.RData")
 silc.pos.p2 <- readRDS("GER_pos_p2.RData")
-post_tax_p1 <- readRDS("GER_post_tax_p1_table.RData")
+
 
 silc.p1.svy <- svydesign(ids =  ~ id_h,
                          weights = ~rb050,
@@ -160,9 +160,12 @@ colnames(middleclass.old) <- headers
 
 # table middle class with two children (needs adjustment load parents id)
 silc.pos.p1 <- silc.pos.p1 %>% mutate(child = as.numeric(age <= 17))
+silc.pos.p1$child[(silc.pos.p1$rb220 != 0 | silc.pos.p1$rb230 !=0 ) & silc.pos.p1$age <= 24] <- 1
 silc.pos.p1 <- silc.pos.p1 %>% 
   group_by(id_h) %>%
   mutate(children = sum(child))
+
+
 
 # filter for two children
 silc.two <- silc.pos.p1 %>% filter(children == 2)
@@ -192,7 +195,6 @@ middleclass.many <-
 colnames(middleclass.many) <- headers
 
 # save tables
-# save data
 saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
 saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
 saveRDS(middleclass.many, file="GER_middleclass_many.RData")
