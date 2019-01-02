@@ -1,97 +1,311 @@
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 #
-# Indicators for Germany
-# Autoren: Gust
-# Datum: 2018-11-23
+# Indicators R-Script Germany
 #
-# -------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 library(dplyr)
 library(survey)
 library(convey)
 
+#source("fetch_data_GER.R")
 
-# Source the Setup scripts to provide merged household and personal data
-source("R/_connection.R")
-source("R/_setup.R")
+# Creating Survey Objects -----------------------------------------------------
 
+#get data 
 
-# Subsetting --------------------------------------------------------------
-
-# To get useful results we may want to subset to only positive income
-silc.pd.inc <- silc.pd %>% filter(py010g > 0)
-silc.hd.inc <- silc.hd %>% filter(hy010 > 0)
-
-# Creating Survey Objects -------------------------------------------------
-
-silc.pd.svy <- svydesign(ids =  ~ id_h,
-                         strata = ~db020,
-                         weights = ~pb040,
-                         data = silc.pd.inc) %>% convey_prep()
-
-silc.hd.svy <- svydesign(ids = ~id_h,
-                         strata = ~db020,
-                         weights = ~db090,
-                         data = silc.hd.inc) %>% convey_prep()
+silc.pos.p1 <- readRDS("GER_pos_p1.RData")
+silc.pos.p2 <- readRDS("GER_pos_p2.RData")
 
 
+silc.p1.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.pos.p1) %>% convey_prep()
 
-# Indicators by Year --------------------------------------------------------------
-
-# Mean Income
-#
-
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy, svymean)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy, svymean)
-
-# Median Income
-#
-
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy,
-      svyquantile, ~total.inc, quantiles = c(0.5), keep.var = FALSE)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy,
-      svyquantile, ~hy010, quantiles = c(0.5), keep.var = FALSE)
-
-# Decile Points
-#
-
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy,
-      svyquantile, ~total.inc, quantiles = seq(0, 1, 0.1), keep.var = FALSE)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy,
-      svyquantile, ~total.inc, quantiles = seq(0, 1, 0.1), keep.var = FALSE)
-
-# Quantile Share Ratio
-#
-
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy, svyqsr, 0.2, 0.8)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy, svyqsr, 0.2, 0.8)
-
-# Top 10% Income Share not ready!!!
-#
-#for(db010 in 2005:2013){
-svytotal(~total.inc, subset(silc.pd.svy, db010==c(2013) & total.inc >=
-                              as.numeric(svyquantile(~total.inc, silc.pd.svy, quantile = 0.9)))) /
-  svytotal(~total.inc, subset(silc.pd.svy, db010==c(2013)))
-#}
-
-svytotal(~hy010, subset(silc.hd.svy, db010==2013 & hy010 >=
-                          as.numeric(svyquantile(~hy010, silc.hd.svy, quantile = 0.9)))) /
-  svytotal(~hy010,subset(silc.hd.svy, db010==2013))
+silc.p2.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.pos.p2) %>% convey_prep()
 
 
 
 
-# Gini Coefficient
-#
 
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy, svygini)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy, svygini)
+# Indicators ------------------------------------------------------------------
 
-# Theil Index
-#
+# P1 EUROSTAT -----------------------------------------------------------------
 
-svyby(~total.inc, ~as.factor(db010), silc.pd.svy,
-      svygei, epsilon = 1)
-svyby(~hy010, ~as.factor(db010), silc.hd.svy,
-      svygei, epsilon = 1)
+# Pre-tax factor income (Canberra: primary income) ----------------------------
 
+# Mean
+years_mean_p1_1 <- svyby(~income_p1_1,
+                         ~as.factor(rb010), silc.p1.svy, svymean)
+
+# Median
+years_median_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svygini)
+
+# P80/P20
+years_p80p20_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svyqsr)
+
+# Top 10% share
+
+top_p1_1 <- subset(silc.p1.svy, income_p1_1 >= as.numeric(
+  svyquantile(~income_p1_1, silc.p1.svy, quantile=c(0.9))))
+
+topnum_p1_1 <- svyby(~income_p1_1, ~rb010, top_p1_1, svytotal)
+
+topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
+
+# Pre-tax national income -----------------------------------------------------
+
+
+# Mean
+years_mean_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svymean)
+
+# Median
+years_median_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svygini)
+
+# P80/P20
+years_p80p20_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svyqsr)
+
+# Top 10% share
+top_p1_2 <- subset(silc.p1.svy, income_p1_2 >= as.numeric(
+  svyquantile(~income_p1_2, silc.p1.svy, quantile=c(0.9))))
+
+topnum_p1_2 <- svyby(~income_p1_2, ~rb010, top_p1_2, svytotal)
+
+topden_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_2 <- topnum_p1_2 / topden_p1_2
+
+# Post-tax disposable income --------------------------------------------------
+
+# Mean
+years_mean_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svymean)
+
+# Median
+years_median_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p1_3 <- svyby(~income_p1_3, ~as.factor(rb010), silc.p1.svy, svygini)
+
+# P80/P20
+years_p80p20_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svyqsr)
+
+# Top 10% share
+
+
+top_p1_3 <- subset(silc.p1.svy, income_p1_3 >= as.numeric(
+  svyquantile(~income_p1_3, silc.p1.svy, quantile=c(0.9))))
+
+topnum_p1_3 <- svyby(~income_p1_3, ~rb010, top_p1_3, svytotal)
+
+topden_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_3 <- topnum_p1_3 / topden_p1_3
+
+
+# -----------------------------------------------------------------------------
+
+# P2 WID WORLD ----------------------------------------------------------------
+
+# Pre-tax factor income (Canberra: primary income) ----------------------------
+
+# Mean
+years_mean_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svymean)
+
+# Median
+years_median_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p2_1 <- svyby(~income_p2_1, ~as.factor(rb010), silc.p2.svy, svygini)
+
+# P80/P20
+years_p80p20_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svyqsr)
+
+# Top 10% share
+
+top_p2_1 <- subset(silc.p2.svy, income_p2_1 >= as.numeric(
+  svyquantile(~income_p2_1, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_1 <- svyby(~income_p2_1, ~rb010, top_p2_1, svytotal)
+
+topden_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_1 <- topnum_p2_1 / topden_p2_1
+
+# Pre-tax national income -----------------------------------------------------
+
+
+# Mean
+years_mean_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svymean)
+
+# Median
+years_median_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p2_2 <- svyby(~income_p2_2, ~as.factor(rb010), silc.p2.svy, svygini)
+
+# P80/P20
+years_p80p20_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svyqsr)
+
+# Top 10% share
+
+
+top_p2_2 <- subset(silc.p2.svy, income_p2_2 >= as.numeric(
+  svyquantile(~income_p2_2, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_2 <- svyby(~income_p2_2, ~rb010, top_p2_2, svytotal)
+
+topden_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_2 <- topnum_p2_2 / topden_p2_2
+
+
+# Post-tax disposable income --------------------------------------------------
+
+# Mean
+years_mean_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svymean)
+
+# Median
+years_median_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy,
+                           svyquantile, quantiles = c(0.5), 
+                           keep.var = FALSE)
+
+
+# Gini
+years_gini_p2_3 <- svyby(~income_p2_3, ~as.factor(rb010), silc.p2.svy, svygini)
+
+# P80/P20
+years_p80p20_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svyqsr)
+
+# Top 10% share
+
+top_p2_3 <- subset(silc.p2.svy, income_p2_3 >= as.numeric(
+  svyquantile(~income_p2_3, silc.p2.svy, quantile=c(0.9))))
+
+topnum_p2_3 <- svyby(~income_p2_3, ~rb010, top_p2_3, svytotal)
+
+topden_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal)
+
+years_top10_p2_3 <- topnum_p2_3 / topden_p2_3
+
+# Tables ----------------------------------------------------------------------
+measures <-c('Years', 'Mean', 'Median', 'Gini','P80/P20', 'Top10')
+income_concept <- c('Pre-tax factor income','Pre-tax national income', 
+                    'Post-tax disposable income')
+
+
+
+# P1 Eurostat
+
+# pre-tax factor income
+pre.tax.fac.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_1, years_median_p1_1, 
+                              years_gini_p1_1, years_p80p20_p1_1, 
+                             years_top10_p1_1, row.names=NULL)
+
+pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("se", colnames(pre.tax.fac.p1))] 
+pre.tax.fac.p1 <- pre.tax.fac.p1[,-grep("rb", colnames(pre.tax.fac.p1))] 
+
+colnames(pre.tax.fac.p1) <- measures
+
+# pre-tax national income
+
+pre.tax.nat.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_2, years_median_p1_2, 
+                             years_gini_p1_2, years_p80p20_p1_2, 
+                             years_top10_p1_2, row.names=NULL)
+
+pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("se", colnames(pre.tax.nat.p1))] 
+pre.tax.nat.p1 <- pre.tax.nat.p1[,-grep("rb", colnames(pre.tax.nat.p1))] 
+
+colnames(pre.tax.nat.p1) <- measures
+
+# post-tax disposable income
+post.tax.p1 <- data.frame(Years = c(2005:2017), years_mean_p1_3, years_median_p1_3, 
+                             years_gini_p1_3, years_p80p20_p1_3, 
+                             years_top10_p1_3, row.names=NULL)
+
+post.tax.p1 <- post.tax.p1[,-grep("se", colnames(post.tax.p1))] 
+post.tax.p1 <- post.tax.p1[,-grep("rb", colnames(post.tax.p1))] 
+
+colnames(post.tax.p1) <- measures
+
+# P2 WID WORLD
+
+# pre-tax factor income
+pre.tax.fac.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_1, years_median_p2_1, 
+                             years_gini_p2_1, years_p80p20_p2_1, 
+                             years_top10_p2_1, row.names=NULL)
+
+pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("se", colnames(pre.tax.fac.p2))] 
+pre.tax.fac.p2 <- pre.tax.fac.p2[,-grep("rb", colnames(pre.tax.fac.p2))] 
+
+colnames(pre.tax.fac.p2) <- measures
+
+# pre-tax national income
+
+pre.tax.nat.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_2, years_median_p2_2, 
+                             years_gini_p2_2, years_p80p20_p2_2, 
+                             years_top10_p2_2, row.names=NULL)
+
+pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("se", colnames(pre.tax.nat.p2))] 
+pre.tax.nat.p2 <- pre.tax.nat.p2[,-grep("rb", colnames(pre.tax.nat.p2))] 
+
+colnames(pre.tax.nat.p2) <- measures
+
+# post-tax disposable income
+post.tax.p2 <- data.frame(Years = c(2005:2017), years_mean_p2_3, years_median_p2_3, 
+                          years_gini_p2_3, years_p80p20_p2_3, 
+                          years_top10_p2_3, row.names=NULL)
+
+post.tax.p2 <- post.tax.p2[,-grep("se", colnames(post.tax.p2))] 
+post.tax.p2 <- post.tax.p2[,-grep("rb", colnames(post.tax.p2))] 
+
+colnames(post.tax.p2) <- measures
+
+# express Gini and top10% in percent
+pre.tax.fac.p1 <- pre.tax.fac.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.fac.p2 <- pre.tax.fac.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.nat.p1 <- pre.tax.nat.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+pre.tax.nat.p2 <- pre.tax.nat.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+post.tax.p1 <- post.tax.p1 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+post.tax.p2 <- post.tax.p2 %>% mutate(Gini = Gini * 100, 
+                                            Top10 = Top10 * 100)
+# save tables
+
+stop("switch to table folder!")
+saveRDS(pre.tax.fac.p1, file="GER_pre_tax_fac_p1_table.RData")
+saveRDS(pre.tax.nat.p1, file="GER_pre_tax_nat_p1_table.RData")
+saveRDS(post.tax.p1, file="GER_post_tax_p1_table.RData")
+saveRDS(pre.tax.fac.p2, file="GER_pre_tax_fac_p2_table.RData")
+saveRDS(pre.tax.nat.p2, file="GER_pre_tax_nat_p2_table.RData")
+saveRDS(post.tax.p2, file="GER_post_tax_p2_table.RData")
+
+# Fin -------------------------------------------------------------------------
