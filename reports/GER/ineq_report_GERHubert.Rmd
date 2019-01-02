@@ -5,6 +5,8 @@ author: "Sarah Gust & Hubert Weiß"
 abstract: "Dieses Dokument ..."
 keywords: "inequality"
 date: '`r format(Sys.time(), "%d %B, %Y")`'
+bibliography: "referencesreport.bib"
+ 
 output: 
   pdf_document:
     toc: true
@@ -16,12 +18,14 @@ header-includes:
 - \usepackage{setspace}
 - \usepackage{chngcntr}
 - \onehalfspacing
-
+   
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Zitieren im Text -> Eckige Klammer [@grabka2016schrumpfender] Eckige Klammer, cheatsheet, R Markdown Knit geht nicht!!   
 
 \newpage
 
@@ -50,6 +54,30 @@ Mittelwert und Median sind beim Pre-tax national income (Tabelle 3 und 4) etwas 
 Für das Post-tax disposable income (Tabelle 5 und 6) sind Mittelwert und Median etwas niedriger als bei den vorsteuerlichen Einkommenskonzepten. Damit wird die Ungleicheit in den Einkommen verringert, wie Gini-Koeffizient und P80/P20-Ratio zeigen. 
 
 # Die Entwicklung der Mittelschicht in Deutschland
+
+# Einleitung Mittelschicht 
+
+Im folgendem wird ein kurzer Überblick über aktuelle Literatur zu dem Thema Mittelschicht gegeben und welche verschiedenen Ansätze der vorliegenden Thematik relevant sind. Die Komplexität der Definition der Mittelschicht wurde man sich spätestens bewusst durch die Aussage des Kandidaten für den CDU Parteivorsitz Friedrich Merz welcher sich mit einem jährlichen Einkommen von rund 1. Millionen Euro zur gehobenen Mittelschicht zählt. Merz beruft sich darauf, dass die Mittelschicht keine rein ökonomische Größe ist, sondern auch durch andere Werte wie Fleiß und Disziplin definiert wird. Das Hauptaugenmerk dieser Arbeit wird durch die Verwendung von EU-Silc geprägt welche die Einkommensdaten verschiedener Haushalte in Deutschland erfasst, dies hat zur Folge, dass der Schwerpunkt der Betrachtung auf die ökonomische Komponente gelegt wird und weniger auf die soziologischen Eckpunkte der Mittelschicht. 
+
+Quelle: (https://www.zeit.de/politik/deutschland/2018-11/friedrich-merz-cdu-vorsitz-einkommen Stand 26.12.2016: 21:45 Uhr) 
+
+# Die Mittelschicht im Überblick 
+
+Die gesellschaftlichen Schichten werden neben dem Einkommen noch durch andere qualitative Faktoren unterschieden über welche hier ein kurzer Überblick gegeben wird, im weiteren Verlauf dieser Arbeit wird dann ausführlich die Unterscheidung anhand des Einkommens diskutiert. So verwendet Niehues für die soziokulturelle Abgrenzung der Schichten abermals die, der IW Köln. Die Abgrenzung wird hier Anhand des beruflichen Werdegangs des Haupteinkommensbeziehers eines Haushaltes festgemacht und gilt für den gesamten Haushalt. So ist eine Vorrausetzung für die Mittelschicht, dass erlangen eines Berufsabschlusses, des weiteren gehören Facharbeiter/innen, Meister/innen und qualifizierte Angestellt der Mittelschicht an. Weitergedacht werden hier noch tiefergehende Unterscheidungen getroffen, so gehören Lehrer/innen noch der Mittelschicht an während Studiendirektor/innen und Lehrpersonal an Universitäten bereits der Oberschicht angehören. Es wird ersichtlich, dass die Unterscheidung der Mittelschichten nicht nur durch das Einkommen vorgenommen werden kann sondern auch durch soziokulturelle Faktoren, interessant wäre auch eine ausführliche Definition der Mittelschicht anhand Bourdieus Habitustheorie, was aber für eine weniger quantitative Ausrichtung der hier vorliegenden Arbeit sprechen würde. 
+[@niehues2013arm]
+
+# Definition der Mittelschicht nach IW Köln 
+
+Bei der Mittelschicht handelt es sich wie die Bezeichnung bereits vermuten lässt um die Mitte der Gesellschaft, die betroffenen Personen sind weder Armutsgefährdet noch außergewöhnlich vermögend. Für die ökonomische Unterteilung welcher Schicht ein Haushalt bzw. eine Person angehört wird im weiteren die Abgrenzung des Instituts der deutschen Wirtschaft in Köln verwendet. Die Unterteilung des IW Köln unterscheidet unsere Gesellschaft in fünf verschiedene Gruppen. Der Teil der Gesellschaft der von armutsgefährdet ist bezieht ein Einkommen welches unter 60% des Medianeinkommens liegt, während die Einkommensschwachen und untere Mitte zwischen 60%-80% des Medianeinkommens beziehen. Die wirkliche Mitte, welche von Niehues als Mitte im engeren Sinn bezeichnet wird, verfügt über ein Einkommen von 80%-150% vom Median. Die wohlhabenden Schichten spalten sich auf in die einkommensstarke/obere Mitte mit 150%-250% des Medians und die Einkommensreichen mit über 250% vom Medianeinkommen. Durch die Auflistung der Unterteilung des IW Köln wird ersichtlich, dass die Definition der Mittelschicht selbst über rein ökonomische Größen sehr breit gefasst ist, im engeren Sinn bezieht die Mittelschicht zwischen 80%-150% des Median während eine weitere Definition sämtliche Personen zwischen 60% und 250% vom Median zu der Mittelschicht zählen würde
+[@niehues2017mittelschicht]
+
+# Die Entwicklung der Mittelschicht in der Vergangenheit 
+
+Ausgehend von der weiterführenden Betrachtung der Mittelschicht ist es unerlässlich zu erörtern wie sich diese in den letzten Jahrzehnten entwickelt hat, ist dies auf verschiedenen Faktoren wie die EU-Krise zurückzuführen oder veränderte sich die Einkommensmitte der deutschen Bevölkerung stetig. Grabka beschreibt in seiner Arbeit die Entwicklung der Mittelschicht bis in das Jahr 2009, was eine passende Ergänzung zu der Auswertung der uns vorliegenden EU-Silc Daten ist. 
+
+So stellt Grabka fest, dass der Median der Einkommensmitte in Westdeutschland von 1983 bis 1991 um 10% steigt während für Gesamtdeutschland bis zum Jahr 2001 nur ein Anstieg um 4% festzustellen ist. Der Anstieg des Median lässt aber einzeln betrachtet keinen Schluss auf die Veränderung der Mittelschicht zu. Die Mittelschicht welche traditionell den stärksten Anteil der Schichten stellt – nicht nur durch subjektive Empfindungen, sondern auch durch objektive quantitative benötigt für genauere Rückschlüsse das Bevölkerungswachstum. Der Anzahl der Erwachsenen Bundesbürger hat sich somit vom Jahr 1983 um 4 Millionen auf 68 Millionen in dem Jahr 2013 erhöht. Mit dem Anstieg der Bevölkerung und dem Anstieg des Medians der Einkommensmitte ist es überraschend, dass die mittlere Einkommensgruppe in der Vergangenheit rückläufig ist. In dem Jahr 1983 beträgt der Anteil der mittleren Einkommensgruppe an der Erwachsenenbevölkerung noch 62%, nimmt aber auf 57% in dem Jahr 2001 ab, bis zu dem Jahr 2013 erscheint eine weitere Abnahme auf 54%. Die Entwicklung der Mittelschicht in Deutschland wird somit von Niehues in drei verschiedene Phasen unterteilt. Die erste Phase ist geprägt von einer Ausweitung der Mittelschicht nach dem Mauerfall, die neuen Bundesländern nähern sich der Wirtschaftsleistung der West Deutschen Bundesländer an, darauf folgt ein schrumpfen der Mittelschicht bis Mitte der 2000 Jahre eine Stagnation eintritt und die Mittelschicht konstant bleibt. In dieser Arbeit wird beobachtet ob sich der Trend fortsetzt oder abermals eine Veränderung eintritt bzw. 
+[@niehues2017mittelschicht]
+[@grabka2016schrumpfender]
 
 # Graphen 
 
