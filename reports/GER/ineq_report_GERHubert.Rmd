@@ -191,6 +191,6 @@ kable(middleclass.two, caption = "Post-tax disposable income - Two Children")
 
 ```{r echo=FALSE}
 library(knitr)
-middleclass.old <- readRDS("tables/GER_middleclass_two.RData")
+middleclass.old <- readRDS("tables/GER_middleclass_old.RData")
 kable(middleclass.old, caption = "Post-tax disposable income - Older")
 ```
