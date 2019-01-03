@@ -79,13 +79,27 @@ So stellt Grabka fest, dass der Median der Einkommensmitte in Westdeutschland vo
 [@niehues2017mittelschicht]
 [@grabka2016schrumpfender]
 
-## Beschreibung Mittelschicht - Grafik 7 
+##Beschreibung Mittelschicht - Grafik 7 
 
 Die Auswertungen der Mittelschicht, welche nach der oben erwähnten Definition der IW Köln abgestuft wurde, erfolgt durch die Betrachtung des „post-tax disposable income“. Das „post-tax dispoable income“ bezeichnet das verfügbare Einkommen der Haushalte nachdem sämtliche Steuern bezahlt wurden und enthält bereits staatliche Transferleistungen. Durch die Unterteilung der Mittelschicht in obere, untere und die enge Mitte wird ersichtlich wie sich die Veränderung der kompletten Mittelschicht zusammengesetzt hat. Es wird ersichtlich, dass, das Median Einkommen von 2005 bis 2006 um 1.033€ gesunken ist während wir im gesamten Zeithorizont einen Anstieg von 17.009€ im Jahr 2005 auf 22.616€ im Jahr 2017 beobachten können. Der Anteil der gesamten Mittelschicht an Bevölkerung nimmt in dem gleichen Zeitraum von 88,13% auf 83,95% ab. Die Zusammensetzung der Mittelschicht verschiebt sich über die Jahre stetig, es kommt zu einem Zuwachs bei der unteren Mitte welche 60%-80% des Medianeinkommens bezieht. Der Anteil der unteren Mitte erhöht sich im gesamten Zeithorizont von 15,22% im Jahr 2005 auf 18,63% im Jahr 2017, der Bevölkerung. die größte Veränderung erfolgt in den Jahren 2005 bis 2006 in denen sich die untere Mitte um 2,61% verringert, dieser „Ausreißer“ in der Entwicklung ist auf die Veränderung des Median Income im selbigen Zeitraum zurückzuführen. Bis auf die „starke“ Veränderung der Mitte in den Jahren 2005 bis 2007 bleiben die Unterschiede zwischen den einzelnen Jahren meistens gering und bewegen sich deutlich unter 1%. 
 
 Die obere Mittelschicht verändert sich gegenläufig zu der bereits diskutieren unteren Mitte, in den Jahren 2005 bis 2007 ist aber auch hier ein „Ausreißer“ ersichtlich. In den Jahren 2005 bis 2006 erfolgt ein Anstieg des Anteils der oberen Mitte, während sie in der gesamten Betrachtung abnimmt. Der Zuwachs zwischen 2005 bis 2006 um 3,18% auf 19,87% wird durch die Verringerung im Jahr 2007 auf 14.71% rückgängig gemacht. Zwischen den Jahren 2007 und 2017 bewegen sich die meisten Zuwächse/Verluste der oberen Mittelschicht unter 0,5% bis sie im Jahr 2017 schlussendlich 14,23% der betrachteten Bevölkerung ausmacht. 
 
 Im Gegensatz zu der oberen und unteren Mitte ist die Veränderung der engen Mitte zwischen den Jahren 2005 bis 2007 weniger dramatisch ausgefallen, es erfolgt eine Abnahme von 56,22% im Jahr 2005 auf 55,09% in 2006 und eine weitere Verringerung des Anteils auf 52,81% im Jahr 2007. In dem Jahr 2017 macht die enge Mitte in Deutschland hier nur noch 51.09% der betrachteten Bevölkerung aus. In der totalen Betrachtung der Mittelschicht von 2005 bis 2017 wird ersichtlich, dass sich die untere Mitte mit ihrem geringen Einkommen zunimmt die obere und eng definierte Mitte abgenommen haben. In den Daten von 2005 macht die obere und enge Mitte noch 72,91% der Bevölkerung aus während in dem letzten Betrachtungsjahr nur noch 65,32% diesen zugerechnet werden kann. Der Anteil der Bevölkerung welcher der Mittelschicht zugerechnet werden kann nimmt ab, lediglich der Anteil welcher als untere Mitte bezeichnet werden kann erhöht sich. 
+
+##Beschreibung Mittelschicht Single Living - Grafik 8
+
+Die Daten für Einpersonenhaushalte (Single Living) zeigen bei dem Median Einkommen abermals einen Zuwachs in den Jahren 2005 bis 2017 an, im Gegensatz zu der Gesamtbetrachtung gibt es hier keine nennenswerte Abweichung in den Jahren 2005 bis 2006. Der Zuwachs im betrachteten Zeitraum beträgt 3.807€ von 17.291€ im Jahr 2005 auf ein Median Einkommen von 21.098€ im Jahr 2017. Der gesamte Anteil der Mittelschicht an den Einpersonenhaushalten verringerte sich von ursprünglich 81,04% auf 74.25% im Jahr 2017. Dies setzt sich zusammen aus einer Verringerung der unteren, oberen und engen Mitte. Während wir bei der Betrachtung der Mittelschicht der gesamten Bevölkerung Unterschiede in den einzelnen Abstufungen sehen konnten nehmen hier alle Teile der Mittelschicht bis in das Jahr 2017 ab. 
+
+Abermals wird ersichtlich, dass bei der unteren Mitte von 2005 bis 2006 eine Verringerung eintritt, von 15,94% im Jahr 2005 auf 12,34% im Jahr 2006, diese verläuft ähnlich wie in der gesamten Betrachtung. Im weiteren Verlauf verringert sich dann der Anteil an der gesamten Mittelschicht auf 15.01% wobei die jährlichen Veränderungen hier stärker ausfallen wie bei der bereits beschriebenen gesamten Bevölkerung. Die untere Mitte zeigt somit auch den größten Unterschied zwischen den Einpersonenhaushalten und der gesamten Betrachtung auf, während wir bei der gesamten Betrachtung einen Anstieg der unteren Mitte beobachten wird hier eine schrumpfen dieser offensichtlich. 
+
+Die obere Mitte verhält sich hier auch parallel zu der gesamten Bevölkerung, von 2005 auf 2006 erfolgt ein Anstieg von 15,62% auf 20,87% während wir bis im Jahr 2017 eine Abnahme auf 13,33% der Mittelschicht der Einpersonenhaushalte sehen. 
+
+Die Mitte im engeren Sinne der Single Haushalte zeigt einen Verlust von 3,6% zwischen 2005 und 2006 an und erholt sich von diesem nicht. Die enge Mitte welche in der gesamten Bevölkerung kaum Veränderungen von 2005 bis 2006 aufzeigt wird hier deutlich beeinflusst. In den Jahren 2008 bis 2009 tritt eine geringe Erholung ein welche dann von einem abermaligen Verlust von 3,95% nichtig gemacht wird. Die Jahre 2010 bis 2017 sind von Zuwächsen der engen Mitte geprägt, schaffen es aber nicht mehr auf das Niveau von 2005 und enden mit 45,90% im Jahr 2017. 
+
+
+
+
 
 
 # Graphen 
