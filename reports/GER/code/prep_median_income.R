@@ -103,7 +103,7 @@ silc.pos.p2 <- silc.pos.p2 %>% mutate(totalmiddle = as.numeric(percent_p23 > 60
 
 # table for middle class group ---------------------------------------------
 
-headers <- c('Year', 'Upper Middle', 'Middle', 'Lower Middle', 'Total Middle', 'Median Income')
+headers <- c('Year', 'Upper Middle', 'Strict Middle', 'Lower Middle', 'Total Middle', 'Median Income')
 options(digits = 4)
 
 # all people
@@ -145,15 +145,18 @@ colnames(middleclass.single) <- headers
 
 # table percent middle class for old
 
+
 silc.old <- silc.pos.p1 %>% filter(age > 65)
 middleclass.old <-  
-  silc.old%>% group_by(rb010) %>% summarise(upper_old= sum(upmiddle)/n()*100,
+  silc.old%>% group_by(rb010) %>% summarise(upper_old = sum(upmiddle)/n()*100,
                                                middle_old = sum(middle)/n()*100,
                                                lower_old = sum(lowmiddle)/n()*100,
                                                total_old = sum(totalmiddle)/n()*100,
                                             median_p13_old = incMedian(income_p1_3, 
                                                                        weights = rb050,
                                                                    years = rb010))
+
+middleclass.old$upper_old <- round(middleclass.old$upper_old, 2)
 
 colnames(middleclass.old) <- headers
 

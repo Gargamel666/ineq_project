@@ -213,12 +213,12 @@ topden_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal)
 years_top10_p2_3 <- topnum_p2_3 / topden_p2_3
 
 # Tables ----------------------------------------------------------------------
-measures <-c('Years', 'Mean', 'Median', 'Gini','P80/P20', 'Top10')
+measures <-c('Years', 'Mean', 'Median', 'Gini','P80P20', 'Top10')
 income_concept <- c('Pre-tax factor income','Pre-tax national income', 
                     'Post-tax disposable income')
 
 
-
+option(digits=5)
 # P1 Eurostat
 
 # pre-tax factor income
@@ -298,6 +298,21 @@ post.tax.p1 <- post.tax.p1 %>% mutate(Gini = Gini * 100,
                                             Top10 = Top10 * 100)
 post.tax.p2 <- post.tax.p2 %>% mutate(Gini = Gini * 100, 
                                             Top10 = Top10 * 100)
+
+# round tables
+pre.tax.fac.p1 <- round(pre.tax.fac.p1, 2)
+pre.tax.fac.p1 <- pre.tax.fac.p1 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+pre.tax.fac.p2 <- round(pre.tax.fac.p2, 2)
+pre.tax.fac.p2 <- pre.tax.fac.p2 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+pre.tax.nat.p1 <- round(pre.tax.nat.p1, 2)
+pre.tax.nat.p1 <- pre.tax.nat.p1 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+pre.tax.nat.p2 <- round(pre.tax.nat.p2, 2)
+pre.tax.nat.p2 <- pre.tax.nat.p2 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+post.tax.p1 <- round(post.tax.p1, 2)
+post.tax.p1 <- post.tax.p1 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+post.tax.p2 <- round(post.tax.p2, 2)
+post.tax.p2 <- post.tax.p2 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
+
 # save tables
 
 stop("switch to table folder!")
