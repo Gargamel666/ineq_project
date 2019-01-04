@@ -97,6 +97,12 @@ Die obere Mitte verhält sich hier auch parallel zu der gesamten Bevölkerung, v
 
 Die Mitte im engeren Sinne der Single Haushalte zeigt einen Verlust von 3,6% zwischen 2005 und 2006 an und erholt sich von diesem nicht. Die enge Mitte welche in der gesamten Bevölkerung kaum Veränderungen von 2005 bis 2006 aufzeigt wird hier deutlich beeinflusst. In den Jahren 2008 bis 2009 tritt eine geringe Erholung ein welche dann von einem abermaligen Verlust von 3,95% nichtig gemacht wird. Die Jahre 2010 bis 2017 sind von Zuwächsen der engen Mitte geprägt, schaffen es aber nicht mehr auf das Niveau von 2005 und enden mit 45,90% im Jahr 2017. 
 
+##Haushalte mit zwei Kindern Table 9
+
+Die verfügbaren Median Einkommen der Haushalte mit zwei Kindern stiegen von 15.803€ im Jahr 2005 um 6.549€ auf 21.461€ im Jahr 2017. Mit diesem Anstieg konnten die Haushalte mit zwei Kindern den größten Anstieg des Median Einkommens aller betrachteten Gruppen ausweisen. Der Gesamtanteil der Mittelschicht von 2005 bis 2017 verringert sich hier von 89,96% auf 87,54% im Jahr 2017, wobei die jährlichen Veränderungen bis in das Jahr 2014 gering ausfallen. Wie bei den bereits erläuterten Gruppen ist zwischen den Jahren 2005 und 2006 eine starke Veränderung ersichtlich welche aber für die Haushalte mit zwei Kindern durch gegenläufige Effekte der verschiedenen Abstufungen der Mittelschicht ausgeglichen werden.
+
+Die untere Mitte verringert sich von 15,61% in dem Jahr 2005 auf 11,41% im folgenden Jahr und erholt sich wieder auf 16,32% im Jahr 2007. Die Jahre 2009 bis einschließlich 2014 sind von wenigen Veränderungen geprägt während es im Jahr 2015 erneut zu einem Anstieg von 15,92% auf 19,39% kommt. Im letzten Jahr unseres Datensatzes macht die untere Mitte der Haushalte mit zwei Kindern 18,88% an der Bevölkerung aus. 
+
 
 
 
