@@ -21,7 +21,7 @@ colnames(middleclass.p1) <- names
 # create plot
 
 
-
+# middle class development -----------------------------------------------------
 
 # Give the chart file a name.
 png(file = "middleclassp1_strict_total.jpg")
@@ -58,6 +58,8 @@ legend("topright", legend=c("Upper Middle Class",
 
 
 dev.off()
+
+# densities ------------------------------------------------------------------
 
 library(psych)
 silc.pos.p1.07 <- silc.pos.p1 %>% filter(rb010 == 2007)   
@@ -134,7 +136,7 @@ legend("topright", legend=c("2007",
        lty=1:3, cex = 0.8)
 dev.off()
 
-
+# Lorenz curves ----------------------------------------------------------------
 
 library(ineq)
 
