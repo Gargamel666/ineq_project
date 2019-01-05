@@ -31,9 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Einleitung:
 
 Die wachsende Ungleichheit der Gesellschaft und dass „schrumpfen“ der Mittelschicht sind Nachrichtentechnische Dauerbrenner, in den Medien wird dies häufig nach einschlägigen Ereignissen thematisiert. Während in den letzten Monaten des Jahres 2018 in Frankreich die „gelb Westen“ das Thema Ungleichheit in die weltweiten Nachrichten brachten bewirkte die Aussage des Kandidaten für den CDU Parteivorsitz Friedrich Merz dass er der Mittelschicht angehöre die Diskussion in den Kontext der Bundesrepublik. 
-(https://www.zeit.de/politik/deutschland/2018-11/friedrich-merz-cdu-vorsitz-einkommen Stand 26.12.2016: 21:45 Uhr) 
-(https://www.sueddeutsche.de/news/politik/demonstrationen-gelbwesten-protest-keine-krawalle-aber-neue-forderungen-dpa.urn-newsml-dpa-com-20090101-181216-99-241315 Stand 04.01.2019: 21:34 Uhr)
-
+@MerzEinkommen [@Gelbwest16]
 
 In der folgenden Arbeit werden anhand der EU-Silc Daten von 2005 bis 2017 die Ungleichheit und Verteilung und die Entwicklung der deutschen Mittelschicht betrachtet. Bezugnehmend auf die zwei Schwerpunkte der hier vorliegenden Arbeit nämlich die Ungleichheit im allgemeinen und die Entwicklung der Mittelschicht im speziellen, ist es unerlässlich zuerst die bereits vorhandene Literatur zu sichten und den aktuellen Stand der Forschung zu ermitteln. Im weiteren Verlauf werden wir die Berechnungen der Daten erläutern und sie im Kontext mit der Ungleichheit setzten. Für die ausführliche Analyse der Ungleichheit werden wir die Entwicklung des Ginikoeffizienten und des P80/P20 Ratios betrachten.
 
@@ -84,7 +82,8 @@ Zusammenfassend lassen sich folgende Trends ausmachen: Median und Mittelwert der
 # Die Entwicklung der Mittelschicht in Deutschland
 
 Die Mittelschicht macht in Deutschland den Größten Teil der Bevölkerung aus. Seit Jahren wird in Deutschland jedoch das Schrumpfen der Mittelschicht diskutiert @grabka2008schrumpfende. Im weiteren Verlauf betrachten wir die Entwicklung der Mittelschicht zwischen 2005 und 2017. Die Komplexität der Definition der Mittelschicht wurde man sich spätestens bewusst durch die Aussage des Kandidaten für den CDU Parteivorsitz Friedrich Merz welcher sich mit einem jährlichen Einkommen von rund 1. Millionen Euro zur gehobenen Mittelschicht zählt. Merz beruft sich darauf, dass die Mittelschicht keine rein ökonomische Größe ist, sondern auch durch andere Werte wie Fleiß und Disziplin definiert wird. Das Hauptaugenmerk dieser Arbeit wird durch die Verwendung von EU-SILC geprägt welche die Einkommensdaten verschiedener Haushalte in Deutschland erfasst. Dies hat zur Folge, dass der Schwerpunkt der Betrachtung auf die ökonomische Komponente gelegt wird und weniger auf die soziologischen Eckpunkte der Mittelschicht. Definiert wird hier die Mittelschicht auf Grundlage des IW Köln, wonach die Mittelschicht im engeren Sinne über ein Einkommen von 80 bis 150 Prozent des Medianeinkommens verfügen. Im Folgendem wird zunächst ein kurzer Überblick über aktuelle Literatur zu dem Thema Mittelschicht gegeben und welche verschiedenen Ansätze der vorliegenden Thematik relevant sind.
-[@niehues2017mittelschicht]
+[@niehues2017mittelschicht] @Friedric57
+
 
 ## Literaturdiskussion
 
