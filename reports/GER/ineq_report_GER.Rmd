@@ -2,7 +2,7 @@
 title: "Einkommensverteilung in Österreich"
 subtitle: "2063 - Ökonomie der Verteilung"
 author: "Sarah Gust & Hubert Weiß"
-abstract: "Dieses Dokument ..."
+abstract: " Einkommensungleichheit in Deutschland ist immer wieder Gegenstand öffentlicher Debatten (Quelle Zeit einfügen). Gerade das schwinden der Mittelschicht erhielt in letzer Zeit häufig mediale Aufmerksamkeit. Der Artikel Betrachtet die Entwicklung der Einkommensungleichheit zwischen 2005 und 2017. Die Ergebnissse zeigen, dass Median und Mittelwert der verschiedenen Einkommenskonzepte insgesamt gestiegen sind. Besonders hat sich der Einkommensanteil der reichsten zehn Prozent der Bevölkerung erhöht. Gini-Koeffizient und P80/P20-Ratio steigen extrem zwischen 2006 und 2007. Wir beobachten einen leichten Rückgang der Einkommensungleichheit ab 2007 für das verfügbare Einkommen, gemessen am Gini-Koeffizienten und der P80/P20-Ratio. Der steigende Einkommensanteil der reichsten zehn Prozent spricht jedoch für eine wachsende Konzentration an der Spitze der Einkommensverteilung. Die Ergebnisse bestätigen einen sinkenden Anteil der Mittelschicht zwischen 2005 und 2017 von 56% auf 51%. Durch die Aufspaltung in obere, untere und eng definierte Mittelschicht wird ersichtlich, dass diese Abnahme durch eine Verringerung der oberen und eng definierten Mittelschicht erfolgt. Die untere Mittelschicht verhält sich dazu gegenläufig und nimmt zu."
 keywords: "inequality"
 date: '`r format(Sys.time(), "%d %B, %Y")`'
 output: 
@@ -19,6 +19,8 @@ header-includes:
 - \onehalfspacing
 
 ---
+
+\newpage
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -157,9 +159,16 @@ Dieses Muster, dass sich die obere und enge Mittelschicht verringern aber der un
 
 # Zusammenfassung und Schlussbemerkungen
 
-- Achtung Deutschland erhebt Daten nur telefonisch, Zusammensetzung wurde kritisiert [@hauser2007probleme]
-- achtung Jahresvergleiche nicht 1 zu 1 
-- lack of sample design information
+Einkommensungleichheit in Deutschland ist immer wieder Gegenstand öffentlicher Debatten (Quelle Zeit einfügen). Während 1995 noch 39% der Bevölkerung die Einkommensverteilung als gerecht empfand, waren es 2013 nur noch 18% @bertels2013. Gerade das schwinden der Mittelschicht erhielt in letzer Zeit häufig mediale Aufmerksamkeit (siehe Quelle wiwo).
+
+In der wissenschaftliche Debatte herrscht Einigkeit über wachsende Einkommensungleichheit bis 2005 (@feld2016jenseits, @biewen2017did, @horn2018entstand, @grabka2017realeinkommen und weitere). Für die darauffolgenden Jahre gibt es verschiedene Interpretationen. So sieht @biewen2017did  keine Fortzetzung des Trends nach 2005, wärend @horn2017tun einen gedämpften, jedoch weiteren Anstieg beobachtet. Unser Artikel trägt zur der Diskussion über die Entwicklung der Ungleichheit in Deutschland speziell ab 2005 bei. Zu diesem Zweck wird die Einkommensentwicklung mit der EU-Statistik über Einkommen und Lebensbedingungen (EU Statistics on Income and Living Conditions – EU-SILC) von 2005 bis 2017 betrachtet. Vorhergegangenen Studien decken lediglich einen Zeitraum bis 2016 ab. Die Definition einiger Variablen in dem Datensatz hat sich über den Zeitraum verändert. Damit sind die Ergebnisse für einzelne Jahre nicht eins zu eins miteinander vergleichbar. Trotz der leichten Verzerrung lassen sich grobe Trends ablesen und bieten auschlussreiche Ergebnisse. @hauser2007probleme kritisiert, dass in Deutschland die EU-SILC Befragung per Telefon und nicht wie üblich persönlich erfolgt. Da jedoch kein Ländervergleich vorgenommen wird sollte das die Ergebniss nicht weiter verzerren. 
+
+Zur Berechnung der Ungleichheitsentwicklung in Deutschland wurden drei verschiedene Einkommenskomponenten herangezogen. Das vorsteuerliche Faktoreinkommen (Pre-tax factor income), das Pre-tax national income und das nachsteuerliche, verfügbare Einkommen (Post-tax disposable income). Im ersten Teil der Arbeit wurde die Entwicklung der Einkommensungleichheitg anhand von allgemeinen Ungleichheits-Indikatoren berechnet. Der zweite Teil bezieht sich auf die Diskussion über eine schwindende Mittelschicht. Die Komplexität der Definition der Mittelschicht machte spätestens die Aussage des Kandidaten für den CDU Parteivorsitz Friedrich Merz deutlich, welcher sich mit einem jährlichen Einkommen von rund 1. Millionen Euro zur gehobenen Mittelschicht zählt. Wir stützen unsere Berechnungen auf die Definition der Mittelschicht nach dem IW Köln, wonach die Mittelschicht im engeren Sinne über ein Einkommen von 80 bis 150 Prozent des Medianeinkommens verfügen. Die Mittelschicht im weiteren Sinne umfasst Personen mit 60% und 250% des Medianeinkommens [@niehues2017mittelschicht].  
+
+Die Ergebnissse zeigen, dass Median und Mittelwert der verschiedenen Einkommenskonzepte zwischen 2005 und 2017 insgesamt gestiegen sind. Besonders hat sich der Einkommensanteil der reichsten zehn Prozent der Bevölkerung erhöht. Gini-Koeffizient und P80/P20-Ratio steigen besonders von dem Jahr 2006 und 2007. Eine Stagnation der Einkommensungleichheit nach 2005, wie von @biewen2017did beschrieben, kann nicht bestätigt werden. Wir beobachten einen leichten Rückgang der Einkommensungleichheit ab 2007 für das Post-tax disposable income, gemessen am Gini-Koeffizienten und der P80/P20-Ratio. Der steigende Einkommensanteil der reichsten zehn Prozent spricht jedoch für eine wachsende Konzentration an der Spitze der Einkommensverteilung.
+
+Die Ergebnisse bestätigen einen sinkenden Anteil der Mittelschicht zwischen 2005 und 2017 von 56% auf 51%. Durch die Aufspaltung in obere, untere und eng definierte Mittelschicht wird ersichtlich, dass diese Abnahme durch eine Verringerung der oberen und eng definierten Mittelschicht erfolgt. Die untere Mittelschicht welche von @niehues2017mittelschicht als einkommensschwach bezeichnet wird verhält sich dazu gegenläufig und nimmt zu. Diese Entwicklung ist koheränt für in verschiedenen relevante Untergruppen, nämlich Haushalte mit 2 Kindern, Single Haushalte und Personen über 65 Jahren. Lediglich die Stärke der Veränderung zeigt Unterschiede auf, so sind die Single Haushalte am wenigsten von der Ausweitung der unteren Mittelschicht betroffen, während sich die obere und enge Mittelschicht vergleichsweise gering ändert. Im Gegensatz dazu sind bei den Personen über 65 Jahre die größte Veränderung zu beobachten, nicht nur wächst die untere Mittelschicht mehr als bei den Vergleichsgruppen auch die obere und enge Mittelschicht nimmt stärker ab. Es zeigt sich bei den alten Personen, die mit 65 Jahren zumeist im Rentenalter sind, dass die gesamte Mittelschicht lediglich um 1,97% abgenommen hat. Diese „geringe“ Abnahme der Mittelschicht der älteren Bevölkerung basiert auf der starken Zunahme der unteren Mittelschicht welche die Verluste bei der engen und oberen Mittelschicht ausgleichen.
+
 
 # Graphen 
 
