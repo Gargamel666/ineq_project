@@ -1,10 +1,11 @@
 ---
-title: "Einkommensverteilung in Österreich"
+title: "Einkommensverteilung in Deutschland"
 subtitle: "2063 - Ökonomie der Verteilung"
 author: "Sarah Gust & Hubert Weiß"
 abstract: " Einkommensungleichheit in Deutschland ist immer wieder Gegenstand öffentlicher Debatten (Quelle Zeit einfügen). Gerade das schwinden der Mittelschicht erhielt in letzer Zeit häufig mediale Aufmerksamkeit. Der Artikel Betrachtet die Entwicklung der Einkommensungleichheit zwischen 2005 und 2017. Die Ergebnissse zeigen, dass Median und Mittelwert der verschiedenen Einkommenskonzepte insgesamt gestiegen sind. Besonders hat sich der Einkommensanteil der reichsten zehn Prozent der Bevölkerung erhöht. Gini-Koeffizient und P80/P20-Ratio steigen extrem zwischen 2006 und 2007. Wir beobachten einen leichten Rückgang der Einkommensungleichheit ab 2007 für das verfügbare Einkommen, gemessen am Gini-Koeffizienten und der P80/P20-Ratio. Der steigende Einkommensanteil der reichsten zehn Prozent spricht jedoch für eine wachsende Konzentration an der Spitze der Einkommensverteilung. Die Ergebnisse bestätigen einen sinkenden Anteil der Mittelschicht zwischen 2005 und 2017 von 56% auf 51%. Durch die Aufspaltung in obere, untere und eng definierte Mittelschicht wird ersichtlich, dass diese Abnahme durch eine Verringerung der oberen und eng definierten Mittelschicht erfolgt. Die untere Mittelschicht verhält sich dazu gegenläufig und nimmt zu."
 keywords: "inequality"
 date: '`r format(Sys.time(), "%d %B, %Y")`'
+lang: de-DE
 output: 
   pdf_document:
     toc: true
