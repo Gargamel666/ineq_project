@@ -8,6 +8,9 @@ library(dygraphs)
 library(xts)
 library(dplyr)
 
+#source("indicators_by_year.R")
+#source("prep_median_income.R")
+
 # load median income 
 middleclass.p1 <- readRDS("GER_middleclass_p1.RData")
 middleclass.p2 <- readRDS("GER_middleclass_p2.RData")
