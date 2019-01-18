@@ -1,0 +1,33 @@
+---
+title: "Session 18/01/2019"
+author: "Sarah Gust"
+date: "18 Jänner 2019"
+output: pdf_document
+---
+
+# Wiki
+- Wenn vorhanden auf Indikatoren verlinken 
+- Literaturverzeichnis: Verwendete Literatur allgemein und weiterführende Literatur
+- Einzelnachweise: Fußnoten
+- Weblinks: weiterführend (keine einzelnen Aussagen belegen)
+- **Einleitung** ganz grob! (omatauglich)
+- **Alternativvorschlag** auf Benutzerseite schreiben --> mehr --> verschieben (immer den ganzen Artikel auf Benutzerseite kopieren, verändern, vorschlagen, verschieben) 
+- BenutzerInnenkonto erstellen 
+- oft zwischenspeichern wegen Historie
+- Dateiformat: vektorgrafik svg
+- blauer Stern --> beobachten
+- Verlinken: wort markieren und auf link-icon
+- Benutzerseite erstellen -> in url gehen hinter namen backslash name der benutzerseite, die erstellt werden sollen 
+
+# Veränderungen
+
+##Einleitung 
+- Land mit geringstem Gini raus da Liste insgesamt total veraltet
+- Wert für 2016 mit 2017 ersetzt
+- Die Einkommen sind verhältnismäßig eher gleich Verteil raus da mit was?
+- Bruttostudenlohn sollte auch aktualisiert werden! 
+
+# Methoden zur Darstellung
+
+
+
