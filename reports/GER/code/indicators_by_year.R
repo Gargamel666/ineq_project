@@ -14,25 +14,25 @@ library(convey)
 
 #get data 
 
-silc.pos.p1 <- readRDS("GER_pos_p1.RData")
-silc.pos.p2 <- readRDS("GER_pos_p2.RData")
-
-
-silc.p1.svy <- svydesign(ids =  ~ id_h,
-                         weights = ~rb050,
-                         data = silc.pos.p1) %>% convey_prep()
-
-silc.p2.svy <- svydesign(ids =  ~ id_h,
-                         weights = ~rb050,
-                         data = silc.pos.p2) %>% convey_prep()
-
-
 
 
 
 # Indicators ------------------------------------------------------------------
 
 # P1 EUROSTAT -----------------------------------------------------------------
+silc.p1 <- readRDS("GER_p1.RData")
+silc.p2 <- readRDS("GER_p2.RData")
+
+
+silc.p1.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.p1) %>% convey_prep()
+
+silc.p2.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.p2) %>% convey_prep()
+
+
 
 # Pre-tax factor income (Canberra: primary income) ----------------------------
 
