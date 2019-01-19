@@ -5,8 +5,10 @@ date: "19 Jänner 2019"
 output: pdf_document
 ---
 
-- 
-#Hubert
+#Feedback für Dänemark
+
+- Insgesamt schaut das schon mega fein aus!
+
 
 #Formal
 - Gini wird in einer Tabelle verwendet bevor er erklärt wird
@@ -16,6 +18,8 @@ output: pdf_document
 - Englische Ausdrücke wie Replacement Rate eindeutschen
 - wenn möglich wäre eine Link sinnvoll der dänische Kronen in Euro umrechnet bzw. den Wechselkurs angibt für die österreischischen und deutschen Leser 
 - progressive Steuern verlinken bzw. erklären ,jbjk,bm
+- Grafik Achsenbeschriftung 
+- Prozentzahlen mit Prozenzeichen 
 
 #Inhalt
 - der erste Satz ist evtl. redundant
@@ -24,14 +28,16 @@ interessante Fakten aber vielleicht fehl am Platz (Kündigungsschutz,Aktionsplan
 
 - "Die Ansprüche sind bei einer Höhe, die in etwa 60% des Durchschnitsslohns entspricht, gedeckelt und sind somit für BezieherInnen höherer Einkommen im internationalen Vergleich eher niedrig. Zusätzlich zu den bereits genannten Punkten, spricht das vergleichsweise großzügige Karenzmodell für den dänischen Wohlfahrtsstaat.[4]""
 Behauptung und Vergleiche sollten belegt werden, z.B. vergleichsweise großzügiges Karenzmodel, mit welchem Land wird hier verglichen? 
+ 
 
 #Spracheliches
+- etwas unklarer Satz: "Ziel dieser strikten Maßnahmen ist es die Dauer der Arbeitslosigkeit zu senken und sicherzustellen, dass die BezieherInnen bereit sind am Arbeitsmarkt zu partizipieren."
 
 #Quellen
 
 - Bei der Einleitung ein wissenschaftliches Paper als Quelle zu nehmen ist evtl. für den 
 normalen Benutzer schwer verständlich 
+- Armutsgefährdungquote Definition verlinken oder Quelle
 
 #Datencheck 
-
-#Sarah
+- wir haben keine Fehler gefunden :) 
