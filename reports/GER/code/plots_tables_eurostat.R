@@ -79,7 +79,7 @@ top10_plot <- ggplot() +
        title = "Anteil des oberen Dezils am nationalen Äquivalenznationaleinkommen ",
        subtitle = "1995 - 2017",
        caption = "Quelle: Eurostat") +
-  expand_limits(y = c(15, 30)) + ggsave(file='top10_plot.svg',height=4,width=7)
+  expand_limits(y = c(20, 25)) + ggsave(file='top10_plot.svg',height=4,width=7)
 
 top10_plot
 
