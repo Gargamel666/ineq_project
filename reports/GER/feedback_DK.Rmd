@@ -6,3 +6,22 @@ output: pdf_document
 ---
 
 - 
+#Hubert
+
+#Formal
+- Gini wird in einer Tabelle verwendet bevor er erklärt wird
+- Einkommen z.B. 22515 wäre mit einem Punkt 22.515 besser lesbar 
+- Der Arbeitsmarkt Absatz wäre besser lesbar mit einer Leerzeile 
+
+#Inhalt
+- der erste Satz ist evtl. redundant
+- Zusammenhang von Arbeitsmarktpolitik zu Einkommensverteilung ist nicht ganz klar, 
+interessante Fakten aber vielleicht fehl am Platz
+
+#Spracheliches
+
+#Quellen
+
+#Datencheck 
+
+#Sarah
