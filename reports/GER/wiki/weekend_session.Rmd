@@ -18,6 +18,7 @@ output: pdf_document
 - blauer Stern --> beobachten
 - Verlinken: wort markieren und auf link-icon
 - Benutzerseite erstellen -> in url gehen hinter namen backslash name der benutzerseite, die erstellt werden sollen 
+- Mean und Median durch Preisindex teilen 
 
 # Veränderungen
 
