@@ -12,15 +12,25 @@ output: pdf_document
 - Gini wird in einer Tabelle verwendet bevor er erklärt wird
 - Einkommen z.B. 22515 wäre mit einem Punkt 22.515 besser lesbar 
 - Der Arbeitsmarkt Absatz wäre besser lesbar mit einer Leerzeile 
+- Begriffe wie BIP, OECD  verlinken zu dem entsprechenden Wikipedia Eintrag 
+- Englische Ausdrücke wie Replacement Rate eindeutschen
+- wenn möglich wäre eine Link sinnvoll der dänische Kronen in Euro umrechnet bzw. den Wechselkurs angibt für die österreischischen und deutschen Leser 
+- progressive Steuern verlinken bzw. erklären ,jbjk,bm
 
 #Inhalt
 - der erste Satz ist evtl. redundant
 - Zusammenhang von Arbeitsmarktpolitik zu Einkommensverteilung ist nicht ganz klar, 
-interessante Fakten aber vielleicht fehl am Platz
+interessante Fakten aber vielleicht fehl am Platz (Kündigungsschutz,Aktionsplan, Weiterbildung)
+
+- "Die Ansprüche sind bei einer Höhe, die in etwa 60% des Durchschnitsslohns entspricht, gedeckelt und sind somit für BezieherInnen höherer Einkommen im internationalen Vergleich eher niedrig. Zusätzlich zu den bereits genannten Punkten, spricht das vergleichsweise großzügige Karenzmodell für den dänischen Wohlfahrtsstaat.[4]""
+Behauptung und Vergleiche sollten belegt werden, z.B. vergleichsweise großzügiges Karenzmodel, mit welchem Land wird hier verglichen? 
 
 #Spracheliches
 
 #Quellen
+
+- Bei der Einleitung ein wissenschaftliches Paper als Quelle zu nehmen ist evtl. für den 
+normalen Benutzer schwer verständlich 
 
 #Datencheck 
 
