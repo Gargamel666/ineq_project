@@ -29,5 +29,7 @@ output: pdf_document
 
 # Methoden zur Darstellung
 
-
++ median mean einkommen einfügen?! 
++ Umstellung auf Prozen sämtlicher Ginis 
++ 
 
