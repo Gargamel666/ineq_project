@@ -10,9 +10,9 @@ library(dplyr)
 library(survey)
 library(convey)
 
-country <- "CZ"
-year <- 2013
-
+country <- "DE"
+year <- 2005
+print(year)
 # Source the Setup scripts to provide merged household and personal data
 source("R/_connection.R")
 source("R/_setup.R")
@@ -78,12 +78,19 @@ svyqsr(~hy010, silc.hd.svy, 0.2, 0.8)
 
 # Top 10% Income Share
 #
-svytotal(~total.inc, subset(silc.pd.svy, pb020 == country & total.inc >= 
+Jahre <- c(2005:2013)
+show(Jahre)
+
+svytotal(~total.inc, subset(silc.pd.svy, db010 == c(2005) & total.inc >= 
                            as.numeric(svyquantile(~total.inc, silc.pd.svy, quantile = 0.9)))) / 
-  svytotal(~total.inc, subset(silc.pd.svy, pb020 == country))
-svytotal(~hy010, subset(silc.hd.svy, db020 == country & hy010 >= 
+  svytotal(~total.inc, subset(silc.pd.svy, db010 == c(2005)))
+svytotal(~hy010, subset(silc.hd.svy, db010 == 2005 & hy010 >= 
                           as.numeric(svyquantile(~hy010, silc.hd.svy, quantile = 0.9)))) /
-  svytotal(~hy010,subset(silc.hd.svy, db020 == country))
+  svytotal(~hy010,subset(silc.hd.svy, db010 == 2005))
+
+(silc.pd.inc) %>%
+  select(db010) %>%
+  filter(db010 == 2006:2008)
 
 # Gini Coefficient
 #
@@ -102,3 +109,4 @@ svygei(~hy010, silc.hd.svy, epsilon = 1)
 #      svygei, epsilon = 1)
 # svyby(~hy010, ~as.factor(db020), silc.hd.svy,
 #      svygei, epsilon = 1)
+

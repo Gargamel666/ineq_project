@@ -1,7 +1,7 @@
 # Setup -------------------------------------------------------------------
 
 library(dplyr)
-if(!exists(c("country", "year"))) {
+if(!exists(c("DE", "2015"))) {
   stop("Please specify country and year.")
 }
 
@@ -10,7 +10,7 @@ if(!exists(c("country", "year"))) {
 
 # Download data
 silc.p <- tbl(pg, "pp") %>%
-  filter(pb020 %in% country & pb010 %in% year) %>%
+  filter(pb020 %in% db020 & pb010 %in% 2015) %>%
   select(pb020, pb030, pb040, pb150, py010g, py050n, px010, px030) %>%
   collect(n = Inf)
 
@@ -52,3 +52,4 @@ silc.pd <- silc.pd %>%
 # Fin ---------------------------------------------------------------------
 
 message("Prepared data for ", country, " in ", year, ".")
+
