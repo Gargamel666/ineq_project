@@ -32,5 +32,6 @@ output: pdf_document
 
 + median mean einkommen einfügen?! 
 + Umstellung auf Prozen sämtlicher Ginis 
-+ 
++ Top 10%, P80/20 einfügen 
++ Grafiken Gini einfügen 
 
