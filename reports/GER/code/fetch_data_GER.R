@@ -2,7 +2,7 @@
 # Angepasst für die Daten von 2005 bis 2013 
 
 library(dplyr)
-if(!exists(c("DE", "2009:2013"))) {
+if(!exists(c("DE", "2005:2017"))) {
   stop("Please specify country and year.")
 }
 

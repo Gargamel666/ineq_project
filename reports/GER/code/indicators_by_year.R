@@ -53,16 +53,14 @@ years_gini_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svygini)
 years_p80p20_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
-
-top_p1_1 <- subset(silc.p1.svy, income_p1_1 >= as.numeric(
-  svyquantile(~income_p1_1, silc.p1.svy, quantile=c(0.9))))
-
-topnum_p1_1 <- svyby(~income_p1_1, ~rb010, top_p1_1, svytotal)
-
-topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
-
-years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
-
+#
+years_top10_p1_1  <- svyby(~income_p1_1, ~rb010, 
+        subset(silc.p1.svy, income_p1_1 >=
+                 svyby(~income_p1_1, ~rb010, silc.p1.svy, svyquantile, quantile = 0.9,
+                       keep.var = FALSE), 
+               svytotal, keep.var = FALSE),
+        svytotal, keep.var = FALSE) / 
+    svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal, keep.var = FALSE)
 # Pre-tax national income -----------------------------------------------------
 
 
@@ -82,14 +80,13 @@ years_gini_p1_2 <- svyby(~income_p1_2, ~as.factor(rb010), silc.p1.svy, svygini)
 years_p80p20_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
-top_p1_2 <- subset(silc.p1.svy, income_p1_2 >= as.numeric(
-  svyquantile(~income_p1_2, silc.p1.svy, quantile=c(0.9))))
-
-topnum_p1_2 <- svyby(~income_p1_2, ~rb010, top_p1_2, svytotal)
-
-topden_p1_2 <- svyby(~income_p1_2, ~rb010, silc.p1.svy, svytotal)
-
-years_top10_p1_2 <- topnum_p1_2 / topden_p1_2
+years_top10_p1_2  <- svyby(~income_p1_2, ~rb010, 
+                           subset(silc.p1.svy, income_p1_2 >=
+                                    svyby(~income_p1_2, ~rb010, silc.p1.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p1_2, ~rb010, silc.p1.svy, svytotal, keep.var = FALSE)
 
 # Post-tax disposable income --------------------------------------------------
 
@@ -110,15 +107,13 @@ years_p80p20_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
 
-
-top_p1_3 <- subset(silc.p1.svy, income_p1_3 >= as.numeric(
-  svyquantile(~income_p1_3, silc.p1.svy, quantile=c(0.9))))
-
-topnum_p1_3 <- svyby(~income_p1_3, ~rb010, top_p1_3, svytotal)
-
-topden_p1_3 <- svyby(~income_p1_3, ~rb010, silc.p1.svy, svytotal)
-
-years_top10_p1_3 <- topnum_p1_3 / topden_p1_3
+years_top10_p1_3  <- svyby(~income_p1_3, ~rb010, 
+                           subset(silc.p1.svy, income_p1_1 >=
+                                    svyby(~income_p1_3, ~rb010, silc.p1.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p1_3, ~rb010, silc.p1.svy, svytotal, keep.var = FALSE)
 
 
 # -----------------------------------------------------------------------------
@@ -144,14 +139,13 @@ years_p80p20_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
-top_p2_1 <- subset(silc.p2.svy, income_p2_1 >= as.numeric(
-  svyquantile(~income_p2_1, silc.p2.svy, quantile=c(0.9))))
-
-topnum_p2_1 <- svyby(~income_p2_1, ~rb010, top_p2_1, svytotal)
-
-topden_p2_1 <- svyby(~income_p2_1, ~rb010, silc.p2.svy, svytotal)
-
-years_top10_p2_1 <- topnum_p2_1 / topden_p2_1
+years_top10_p2_1  <- svyby(~income_p2_1, ~rb010, 
+                           subset(silc.p2.svy, income_p2_1 >=
+                                    svyby(~income_p2_1, ~rb010, silc.p2.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p2_1, ~rb010, silc.p2.svy, svytotal, keep.var = FALSE)
 
 # Pre-tax national income -----------------------------------------------------
 
@@ -173,15 +167,13 @@ years_p80p20_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
-
-top_p2_2 <- subset(silc.p2.svy, income_p2_2 >= as.numeric(
-  svyquantile(~income_p2_2, silc.p2.svy, quantile=c(0.9))))
-
-topnum_p2_2 <- svyby(~income_p2_2, ~rb010, top_p2_2, svytotal)
-
-topden_p2_2 <- svyby(~income_p2_2, ~rb010, silc.p2.svy, svytotal)
-
-years_top10_p2_2 <- topnum_p2_2 / topden_p2_2
+years_top10_p2_2  <- svyby(~income_p2_2, ~rb010, 
+                           subset(silc.p2.svy, income_p2_2 >=
+                                    svyby(~income_p2_2, ~rb010, silc.p2.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p2_2, ~rb010, silc.p2.svy, svytotal, keep.var = FALSE)
 
 
 # Post-tax disposable income --------------------------------------------------
@@ -203,14 +195,13 @@ years_p80p20_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svyqsr)
 
 # Top 10% share
 
-top_p2_3 <- subset(silc.p2.svy, income_p2_3 >= as.numeric(
-  svyquantile(~income_p2_3, silc.p2.svy, quantile=c(0.9))))
-
-topnum_p2_3 <- svyby(~income_p2_3, ~rb010, top_p2_3, svytotal)
-
-topden_p2_3 <- svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal)
-
-years_top10_p2_3 <- topnum_p2_3 / topden_p2_3
+years_top10_p2_3  <- svyby(~income_p2_3, ~rb010, 
+                           subset(silc.p2.svy, income_p2_3 >=
+                                    svyby(~income_p2_3, ~rb010, silc.p2.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p2_3, ~rb010, silc.p2.svy, svytotal, keep.var = FALSE)
 
 # Tables ----------------------------------------------------------------------
 measures <-c('Years', 'Mean', 'Median', 'Gini','P80P20', 'Top10')
