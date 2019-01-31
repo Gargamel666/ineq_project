@@ -207,22 +207,23 @@ silc.rph$test <- silc.rph$hy020/silc.rph$hx050 #should be eqaul to income p1_3
 # P2 WID.WORLD ----------------------------------------------------------------
 
 # Generate variable ("n"): count of hh members age >= 20 
-silc.rph <- silc.rph %>% 
-  add_count(age >= 20, id_h)
+
+silc.rph2 <- silc.rph%>% 
+  filter(age >= 20) %>% add_count(id_h)
 
 # Achtung: Variablen stimmen nur noch für Personen >= 20 Jahre. 
 
 # Pre-tax factor income (Canberra: primary income) 
-silc.rph <- silc.rph %>%
+silc.rph2 <- silc.rph2 %>%
   mutate(income_p2_1 = py010g + car + py050g + py080g + 
            (hy110g + hy040g + hy090g)/n)
 
 # Pre-tax national income 
-silc.rph <- silc.rph %>%
+silc.rph2 <- silc.rph2 %>%
   mutate(income_p2_2 = income_p2_1 + py090g + py100g)
 
 # Post-tax disposable income 
-silc.rph <- silc.rph %>%
+silc.rph2 <- silc.rph2 %>%
   mutate(income_p2_3 = income_p2_2 + py110g + py120g + py130g + py140g + 
            (hy050g + hy060g + hy070g + hy080g - hy120g - hy130g - hy140g)/n)
 
@@ -233,7 +234,7 @@ silc.p1 <- silc.rph
 
 
 # Subset to age >=20
-silc.p2 <- silc.rph %>% filter(age >= 20)   
+silc.p2 <- silc.rph2   
 
 #save data (careful first setwd to local folder or /data)
 stop("do not save in git folder!")
