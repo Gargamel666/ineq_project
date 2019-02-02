@@ -7,6 +7,7 @@
 library(dplyr)
 library(survey)
 library(convey)
+library(srvyr)
 
 #source("fetch_data_GER.R")
 
@@ -32,6 +33,18 @@ silc.p2.svy <- svydesign(ids =  ~ id_h,
                          weights = ~rb050,
                          data = silc.p2) %>% convey_prep()
 
+#survey design to allow for grouping
+grp.p1.svy <- silc.p1 %>%  as_survey(ids = id_h,
+                         weights = rb050) %>% convey_prep()
+
+grp.p2.svy <- silc.p2 %>% as_survey(ids =  id_h,
+                         weights = rb050) %>% convey_prep()
+
+grp.p1.svy <- grp.p1.svy %>% group_by(rb010)
+
+grp.p2.svy <- grp.p2.svy %>% group_by(rb010)
+
+#note: strata missing for Germany 
 
 
 # Pre-tax factor income (Canberra: primary income) ----------------------------
@@ -53,14 +66,18 @@ years_gini_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy, svygini)
 years_p80p20_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
-#
-years_top10_p1_1  <- svyby(~income_p1_1, ~rb010, 
-        subset(silc.p1.svy, income_p1_1 >=
-                 svyby(~income_p1_1, ~rb010, silc.p1.svy, svyquantile, quantile = 0.9,
-                       keep.var = FALSE), 
-               svytotal, keep.var = FALSE),
-        svytotal, keep.var = FALSE) / 
-    svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal, keep.var = FALSE)
+
+#top <- grp.p1.svy %>% summarize(topp11 = svytotal(income_p1_1[income_p1_1 >= 
+  #                                        quantile(income_p1_1, 0.9)])) 
+
+top <- svyby(~income_p1_1[income_p1_1 >= quantile(income_p1_1, 0.9)], ~as.factor(rb010), silc.p1.svy, svytotal)
+
+top_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy,)
+
+topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
+
+years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
+
 # Pre-tax national income -----------------------------------------------------
 
 
@@ -209,7 +226,7 @@ income_concept <- c('Pre-tax factor income','Pre-tax national income',
                     'Post-tax disposable income')
 
 
-option(digits=5)
+options(digits=5)
 # P1 Eurostat
 
 # pre-tax factor income

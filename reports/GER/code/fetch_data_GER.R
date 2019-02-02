@@ -18,7 +18,7 @@ silc.p <- tbl(pg, "pp") %>%
 
 silc.h <- tbl(pg, "hh") %>%
   filter(hb020 == 'DE') %>%
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, hx050) %>%
   collect(n = Inf)
 
@@ -33,7 +33,7 @@ silc.r <- tbl(pg, "rr") %>%
   collect(n = Inf)
 
 
-# Dowload data for 2014-2017
+# Dowload car variable for 2007 to 2013
 c07p <- tbl(pg, "c07p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
@@ -55,6 +55,11 @@ c12p <- tbl(pg, "c12p") %>% filter(pb020 == 'DE') %>%
 c13p <- tbl(pg, "c13p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
+cxxp <- bind_rows(c07p, c08p, c09p, c10p, c11p, c12p, c13p)
+silc.p <- left_join(silc.p, cxxp %>% select(py021g, pb010, pb030))
+
+#download data for 2014 to 2017
+
 c14p <- tbl(pg, "c14p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
          py120g, py130g, py140g, py021g) %>% collect(n = Inf)
@@ -71,35 +76,35 @@ c17p <- tbl(pg, "c17p") %>% filter(pb020 == 'DE') %>%
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
          py120g, py130g, py140g, py021g) %>% collect(n = Inf)
 
-cxxp <- bind_rows(c07p, c08p, c09p, c10p, c11p, c12p, c13p, c14p, c15p, c16p, c17p)
-silc.p <- full_join(silc.p, cxxp) 
+cyyp <- bind_rows(c14p, c15p, c16p, c17p)
+silc.p <- bind_rows(silc.p, cyyp) 
 
 
 
 
 
 c14h <- tbl(pg, "c14h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c15h <- tbl(pg, "c15h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c16h <- tbl(pg, "c16h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c17h <- tbl(pg, "c17h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
-cxxh <- bind_rows(c14h, c15h, c16h, c17h)
-silc.h <- full_join(silc.h, cxxh)
+cyyh <- bind_rows(c14h, c15h, c16h, c17h)
+silc.h <- bind_rows(silc.h, cyyh)
 
 
 
@@ -117,8 +122,8 @@ c17r <- tbl(pg, "c17r") %>% filter(rb020 == 'DE') %>%
   select(rb010, rb020, rb030, rb050, rb080, rb090, rb220, rb230, rx030) %>% collect(n = Inf)
 
 
-cxxr <- bind_rows(c14r, c15r, c16r, c17r)
-silc.r <- full_join(silc.r, cxxr)
+cyyr <- bind_rows(c14r, c15r, c16r, c17r)
+silc.r <- bind_rows(silc.r, cyyr)
 
 # Merge Data Sets-------------------------------------------------------------
 
@@ -203,7 +208,9 @@ silc.rph <- silc.rph %>%
 
 silc.rph$test <- silc.rph$hy020/silc.rph$hx050 #should be eqaul to income p1_3
 
-
+summary(silc.rph$test)
+summary(silc.rph$income_p1_3)
+# same min, max, median; mean (2€ difference)
 # P2 WID.WORLD ----------------------------------------------------------------
 
 # Generate variable ("n"): count of hh members age >= 20 
@@ -227,18 +234,12 @@ silc.rph2 <- silc.rph2 %>%
   mutate(income_p2_3 = income_p2_2 + py110g + py120g + py130g + py140g + 
            (hy050g + hy060g + hy070g + hy080g - hy120g - hy130g - hy140g)/n)
 
-# Subsetting ------------------------------------------------------------------
-
-# p1 data
-silc.p1 <- silc.rph 
+ 
 
 
-# Subset to age >=20
-silc.p2 <- silc.rph2   
-
-#save data (careful first setwd to local folder or /data)
+#save data (careful first setwd to local folder or /data)-----------------------
 stop("do not save in git folder!")
-saveRDS(silc.p1, file="GER_p1.RData")
-saveRDS(silc.p2, file="GER_p2.RData")
+#saveRDS(silc.rph, file="GER_p1.RData")
+#saveRDS(silc.rph2, file="GER_p2.RData")
 
 # Fin -------------------------------------------------------------------------
