@@ -50,7 +50,7 @@ c11p <- tbl(pg, "c11p") %>% filter(pb020 == 'DE') %>%
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
 c12p <- tbl(pg, "c12p") %>% filter(pb020 == 'DE') %>% 
-  select(pb010, pb030,py021g) %>% collect(n = Inf)
+  select(pb010, pb030, py021g) %>% collect(n = Inf)
 
 c13p <- tbl(pg, "c13p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
@@ -139,12 +139,11 @@ silc.r <- silc.r %>% mutate(personal_id = paste0(rb030, rb010))
 silc.p <- silc.p %>% mutate(personal_id = paste0(pb030, pb010))
 
 # merge silc.r and silc.p
-silc.rp <- left_join(silc.r, silc.p)
+silc.rp <- left_join(silc.r, silc.p, by = c("personal_id", "rb010" = "pb010", "rb030" = "pb030"))
 
 # Create age, household ID, gender variables
 silc.rp <- silc.rp %>% 
   mutate(age = rb010 - rb080,
-         gender = factor(rb090, labels = c('Male','Female')),
          id_h = paste0(rx030, rb010)) 
 
 # Create unique IDs for merging, merge country and household ID h,d
@@ -222,24 +221,49 @@ silc.rph2 <- silc.rph%>%
 
 # Pre-tax factor income (Canberra: primary income) 
 silc.rph2 <- silc.rph2 %>%
-  mutate(income_p2_1 = py010g + car + py050g + py080g + 
+  mutate(income_p2_1 = pincome1 + 
            (hy110g + hy040g + hy090g)/n)
 
 # Pre-tax national income 
 silc.rph2 <- silc.rph2 %>%
-  mutate(income_p2_2 = income_p2_1 + py090g + py100g)
+  mutate(income_p2_2 = income_p2_1 + pincome2)
 
 # Post-tax disposable income 
 silc.rph2 <- silc.rph2 %>%
-  mutate(income_p2_3 = income_p2_2 + py110g + py120g + py130g + py140g + 
+  mutate(income_p2_3 = income_p2_2 + pincome3 + 
            (hy050g + hy060g + hy070g + hy080g - hy120g - hy130g - hy140g)/n)
-
- 
-
 
 #save data (careful first setwd to local folder or /data)-----------------------
 stop("do not save in git folder!")
-#saveRDS(silc.rph, file="GER_p1.RData")
-#saveRDS(silc.rph2, file="GER_p2.RData")
+saveRDS(silc.rph, file="GER_p1.RData")
+saveRDS(silc.rph2, file="GER_p2.RData")
+
+
+
+### Inflation------------------------------------------------------------------
+# "prc_hicp_aind" = anual infalion rate with 2015 prizes
+
+inflation <- get_eurostat("prc_hicp_aind", time_format = "raw")
+inflation <- inflation %>% filter(unit == "INX_A_AVG", coicop == "CP00", 
+                                  geo == "DE", time %in% 2005:2017) %>% 
+  select(time, values) %>% arrange(time)
+
+inflation$values <- inflation$values/100
+ 
+
+inflation$time <- as.integer(inflation$time)
+silc.rph <- left_join(silc.rph, inflation, by = c('rb010' = 'time'))
+silc.rph <- silc.rph %>% mutate(income_p1_1 = income_p1_1/values,
+                                income_p1_2 = income_p1_2/values,
+                                income_p1_3 = income_p1_3/values)
+
+silc.rph2 <- left_join(silc.rph2, inflation, by = c('rb010' = 'time'))
+silc.rph2 <- silc.rph2 %>% mutate(income_p2_1 = income_p2_1/values,
+                                  income_p2_2 = income_p2_2/values,
+                                  income_p2_3 = income_p2_3/values)
+
+stop("do not save in git folder!")
+saveRDS(silc.rph, file="GER_p1_inflation.RData")
+saveRDS(silc.rph2, file="GER_p2_inflation.RData")
 
 # Fin -------------------------------------------------------------------------
