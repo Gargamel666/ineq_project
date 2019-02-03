@@ -25,8 +25,8 @@ library(convey)
 
 #get data 
 
-silc.p1 <- readRDS("GER_p1.RData")
-silc.p2 <- readRDS("GER__p2.RData")
+silc.p1 <- readRDS("GER_p1_inflation.RData")
+silc.p2 <- readRDS("GER_p2_inflation.RData")
 
 
 silc.p1.svy <- svydesign(ids =  ~ id_h,
