@@ -33,16 +33,7 @@ silc.p2.svy <- svydesign(ids =  ~ id_h,
                          weights = ~rb050,
                          data = silc.p2) %>% convey_prep()
 
-#survey design to allow for grouping
-grp.p1.svy <- silc.p1 %>%  as_survey(ids = id_h,
-                         weights = rb050) %>% convey_prep()
 
-grp.p2.svy <- silc.p2 %>% as_survey(ids =  id_h,
-                         weights = rb050) %>% convey_prep()
-
-grp.p1.svy <- grp.p1.svy %>% group_by(rb010)
-
-grp.p2.svy <- grp.p2.svy %>% group_by(rb010)
 
 #note: strata missing for Germany 
 
@@ -67,16 +58,39 @@ years_p80p20_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svyqsr)
 
 # Top 10% share
 
+years_top10_p1_1  <- svyby(~income_p1_1, ~rb010, 
+                           subset(silc.p1.svy, income_p1_1 >=
+                                    svyby(~income_p1_1, ~rb010, silc.p1.svy, svyquantile, quantile = 0.9,
+                                          keep.var = FALSE), 
+                                  svytotal, keep.var = FALSE),
+                           svytotal, keep.var = FALSE) / 
+  svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal, keep.var = FALSE)
+############################################
+
 #top <- grp.p1.svy %>% summarize(topp11 = svytotal(income_p1_1[income_p1_1 >= 
   #                                        quantile(income_p1_1, 0.9)])) 
 
-top <- svyby(~income_p1_1[income_p1_1 >= quantile(income_p1_1, 0.9)], ~as.factor(rb010), silc.p1.svy, svytotal)
+#top <- svyby(~income_p1_1[income_p1_1 >= quantile(income_p1_1, 0.9)], ~as.factor(rb010), silc.p1.svy, svytotal)
 
-top_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy,)
+#top_p1_1 <- svyby(~income_p1_1, ~as.factor(rb010), silc.p1.svy,)
 
-topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
+#topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
 
-years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
+#years_top10_p1_1 <- topnum_p1_1 / topden_p1_1
+
+#years_top10_p1_1 <- vector("numeric", length(unique(silc.p1.svy$rb010)))
+#i <- 1
+#for(rb010 in 2005:2018) {
+  #top_p1_1 <- subset(silc.p1.svy, rb010 == rb010 & income_p1_1 >= as.numeric(
+   # svyquantile(~income_p1_1, silc.p1.svy, quantile=c(0.9))))
+  
+#  topnum_p1_1 <- svyby(~income_p1_1, ~rb010, top_p1_1, svytotal)
+  
+  #topden_p1_1 <- svyby(~income_p1_1, ~rb010, silc.p1.svy, svytotal)
+  
+  #years_top10_p1_1[i] <- topnum_p1_1 / topden_p1_1
+#  i <- i + 1
+#}
 
 # Pre-tax national income -----------------------------------------------------
 
