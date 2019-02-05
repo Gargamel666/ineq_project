@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 #
-# Indicators R-Script Germany
+# Indicators R-Script Germany Inflationbereinigt!
 #
 # -----------------------------------------------------------------------------
 
@@ -21,8 +21,8 @@ library(srvyr)
 # Indicators ------------------------------------------------------------------
 
 # P1 EUROSTAT -----------------------------------------------------------------
-silc.p1 <- readRDS("data/GER_p1.RData")
-silc.p2 <- readRDS("data/GER_p2.RData")
+silc.p1 <- readRDS("data/GER_p1_inflation.RData")
+silc.p2 <- readRDS("data/GER_p2_inflation.RData")
 
 
 silc.p1.svy <- svydesign(ids =  ~ id_h,
@@ -347,11 +347,9 @@ post.tax.p2 <- post.tax.p2 %>% mutate_at(vars(Mean, Median), funs(round(., 0)))
 
 # save tables
 
-saveRDS(pre.tax.fac.p1, file="reports/GER/tables/GER_pre_tax_fac_p1_table.RData")
-saveRDS(pre.tax.nat.p1, file="reports/GER/tables/GER_pre_tax_nat_p1_table.RData")
-saveRDS(post.tax.p1, file="reports/GER/tables/GER_post_tax_p1_table.RData")
-saveRDS(pre.tax.fac.p2, file="reports/GER/tables/GER_pre_tax_fac_p2_table.RData")
-saveRDS(pre.tax.nat.p2, file="reports/GER/tables/GER_pre_tax_nat_p2_table.RData")
-saveRDS(post.tax.p2, file="reports/GER/tables/GER_post_tax_p2_table.RData")
-
-# Fin -------------------------------------------------------------------------
+saveRDS(pre.tax.fac.p1, file="reports/GER/tables/GER_pre_tax_fac_p1_table_inflation.RData")
+saveRDS(pre.tax.nat.p1, file="reports/GER/tables/GER_pre_tax_nat_p1_table_inflation.RData")
+saveRDS(post.tax.p1, file="reports/GER/tables/GER_post_tax_p1_table_inflation.RData")
+saveRDS(pre.tax.fac.p2, file="reports/GER/tables/GER_pre_tax_fac_p2_table_inflation.RData")
+saveRDS(pre.tax.nat.p2, file="reports/GER/tables/GER_pre_tax_nat_p2_table_inflation.RData")
+saveRDS(post.tax.p2, file="reports/GER/tables/GER_post_tax_p2_table_inflation.RData")

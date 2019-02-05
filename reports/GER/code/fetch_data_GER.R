@@ -2,7 +2,7 @@
 # Angepasst für die Daten von 2005 bis 2013 
 
 library(dplyr)
-if(!exists(c("DE", "2009:2013"))) {
+if(!exists(c("DE", "2005:2017"))) {
   stop("Please specify country and year.")
 }
 
@@ -18,7 +18,7 @@ silc.p <- tbl(pg, "pp") %>%
 
 silc.h <- tbl(pg, "hh") %>%
   filter(hb020 == 'DE') %>%
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, hx050) %>%
   collect(n = Inf)
 
@@ -33,7 +33,7 @@ silc.r <- tbl(pg, "rr") %>%
   collect(n = Inf)
 
 
-# Dowload data for 2014-2017
+# Dowload car variable for 2007 to 2013
 c07p <- tbl(pg, "c07p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
@@ -50,10 +50,15 @@ c11p <- tbl(pg, "c11p") %>% filter(pb020 == 'DE') %>%
   select(pb010, pb030, py021g) %>% collect(n = Inf)
 
 c12p <- tbl(pg, "c12p") %>% filter(pb020 == 'DE') %>% 
-  select(pb010, pb030,py021g) %>% collect(n = Inf)
+  select(pb010, pb030, py021g) %>% collect(n = Inf)
 
 c13p <- tbl(pg, "c13p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py021g) %>% collect(n = Inf)
+
+cxxp <- bind_rows(c07p, c08p, c09p, c10p, c11p, c12p, c13p)
+silc.p <- left_join(silc.p, cxxp %>% select(py021g, pb010, pb030))
+
+#download data for 2014 to 2017
 
 c14p <- tbl(pg, "c14p") %>% filter(pb020 == 'DE') %>% 
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
@@ -71,35 +76,35 @@ c17p <- tbl(pg, "c17p") %>% filter(pb020 == 'DE') %>%
   select(pb010, pb030, py010g, py050g, py080g, py090g, py100g, py110g, 
          py120g, py130g, py140g, py021g) %>% collect(n = Inf)
 
-cxxp <- bind_rows(c07p, c08p, c09p, c10p, c11p, c12p, c13p, c14p, c15p, c16p, c17p)
-silc.p <- full_join(silc.p, cxxp) 
+cyyp <- bind_rows(c14p, c15p, c16p, c17p)
+silc.p <- bind_rows(silc.p, cyyp) 
 
 
 
 
 
 c14h <- tbl(pg, "c14h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c15h <- tbl(pg, "c15h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c16h <- tbl(pg, "c16h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
 c17h <- tbl(pg, "c17h") %>% filter(hb020 == 'DE') %>% 
-  select(hb010, hb020, hb030, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
+  select(hb010, hb020, hb030, hy010, hy020, hy030g, hy040g, hy050g, hy060g, hy070g, 
          hy080g, hy090g, hy110g, hy120g, hy130g, hy140g, hx040, 
          hx050) %>% collect(n = Inf)
 
-cxxh <- bind_rows(c14h, c15h, c16h, c17h)
-silc.h <- full_join(silc.h, cxxh)
+cyyh <- bind_rows(c14h, c15h, c16h, c17h)
+silc.h <- bind_rows(silc.h, cyyh)
 
 
 
@@ -117,8 +122,8 @@ c17r <- tbl(pg, "c17r") %>% filter(rb020 == 'DE') %>%
   select(rb010, rb020, rb030, rb050, rb080, rb090, rb220, rb230, rx030) %>% collect(n = Inf)
 
 
-cxxr <- bind_rows(c14r, c15r, c16r, c17r)
-silc.r <- full_join(silc.r, cxxr)
+cyyr <- bind_rows(c14r, c15r, c16r, c17r)
+silc.r <- bind_rows(silc.r, cyyr)
 
 # Merge Data Sets-------------------------------------------------------------
 
@@ -134,12 +139,11 @@ silc.r <- silc.r %>% mutate(personal_id = paste0(rb030, rb010))
 silc.p <- silc.p %>% mutate(personal_id = paste0(pb030, pb010))
 
 # merge silc.r and silc.p
-silc.rp <- left_join(silc.r, silc.p)
+silc.rp <- left_join(silc.r, silc.p, by = c("personal_id", "rb010" = "pb010", "rb030" = "pb030"))
 
 # Create age, household ID, gender variables
 silc.rp <- silc.rp %>% 
   mutate(age = rb010 - rb080,
-         gender = factor(rb090, labels = c('Male','Female')),
          id_h = paste0(rx030, rb010)) 
 
 # Create unique IDs for merging, merge country and household ID h,d
@@ -203,43 +207,63 @@ silc.rph <- silc.rph %>%
 
 silc.rph$test <- silc.rph$hy020/silc.rph$hx050 #should be eqaul to income p1_3
 
-
+summary(silc.rph$test)
+summary(silc.rph$income_p1_3)
+# same min, max, median; mean (2€ difference)
 # P2 WID.WORLD ----------------------------------------------------------------
 
 # Generate variable ("n"): count of hh members age >= 20 
-silc.rph <- silc.rph %>% 
-  add_count(age >= 20, id_h)
+
+silc.rph2 <- silc.rph%>% 
+  filter(age >= 20) %>% add_count(id_h)
 
 # Achtung: Variablen stimmen nur noch für Personen >= 20 Jahre. 
 
 # Pre-tax factor income (Canberra: primary income) 
-silc.rph <- silc.rph %>%
-  mutate(income_p2_1 = py010g + car + py050g + py080g + 
+silc.rph2 <- silc.rph2 %>%
+  mutate(income_p2_1 = pincome1 + 
            (hy110g + hy040g + hy090g)/n)
 
 # Pre-tax national income 
-silc.rph <- silc.rph %>%
-  mutate(income_p2_2 = income_p2_1 + py090g + py100g)
+silc.rph2 <- silc.rph2 %>%
+  mutate(income_p2_2 = income_p2_1 + pincome2)
 
 # Post-tax disposable income 
-silc.rph <- silc.rph %>%
-  mutate(income_p2_3 = income_p2_2 + py110g + py120g + py130g + py140g + 
+silc.rph2 <- silc.rph2 %>%
+  mutate(income_p2_3 = income_p2_2 + pincome3 + 
            (hy050g + hy060g + hy070g + hy080g - hy120g - hy130g - hy140g)/n)
 
-# Subsetting ------------------------------------------------------------------
-
-# To get useful results we subset to income >= 0
-silc.pos.p1 <- silc.rph %>% filter(income_p1_1 > 0, income_p1_2 > 0, 
-                                   income_p1_3 > 0)
-
-
-# Also subset to age >=20
-silc.pos.p2 <- silc.rph %>% filter(income_p2_1 > 0, income_p2_2 > 0, 
-                                   income_p2_3 > 0, age >= 20)   
-
-#save data (careful first setwd to local folder or /data)
+#save data (careful first setwd to local folder or /data)-----------------------
 stop("do not save in git folder!")
-#saveRDS(silc.pos.p1, file="GER_pos_p1.RData")
-#saveRDS(silc.pos.p2, file="GER_pos_p2.RData")
+saveRDS(silc.rph, file="data/GER_p1.RData")
+saveRDS(silc.rph2, file="data/GER_p2.RData")
+
+
+
+### Inflation------------------------------------------------------------------
+# "prc_hicp_aind" = anual infalion rate with 2015 prizes
+
+inflation <- get_eurostat("prc_hicp_aind", time_format = "raw")
+inflation <- inflation %>% filter(unit == "INX_A_AVG", coicop == "CP00", 
+                                  geo == "DE", time %in% 2005:2017) %>% 
+  select(time, values) %>% arrange(time)
+
+inflation$values <- inflation$values/100
+ 
+
+inflation$time <- as.integer(inflation$time)
+silc.rph <- left_join(silc.rph, inflation, by = c('rb010' = 'time'))
+silc.rph <- silc.rph %>% mutate(income_p1_1 = income_p1_1/values,
+                                income_p1_2 = income_p1_2/values,
+                                income_p1_3 = income_p1_3/values)
+
+silc.rph2 <- left_join(silc.rph2, inflation, by = c('rb010' = 'time'))
+silc.rph2 <- silc.rph2 %>% mutate(income_p2_1 = income_p2_1/values,
+                                  income_p2_2 = income_p2_2/values,
+                                  income_p2_3 = income_p2_3/values)
+
+stop("do not save in git folder!")
+saveRDS(silc.rph, file="data/GER_p1_inflation.RData")
+saveRDS(silc.rph2, file="data/GER_p2_inflation.RData")
 
 # Fin -------------------------------------------------------------------------
