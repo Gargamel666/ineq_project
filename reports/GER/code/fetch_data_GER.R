@@ -235,8 +235,8 @@ silc.rph2 <- silc.rph2 %>%
 
 #save data (careful first setwd to local folder or /data)-----------------------
 stop("do not save in git folder!")
-saveRDS(silc.rph, file="GER_p1.RData")
-saveRDS(silc.rph2, file="GER_p2.RData")
+saveRDS(silc.rph, file="data/GER_p1.RData")
+saveRDS(silc.rph2, file="data/GER_p2.RData")
 
 
 
@@ -263,7 +263,7 @@ silc.rph2 <- silc.rph2 %>% mutate(income_p2_1 = income_p2_1/values,
                                   income_p2_3 = income_p2_3/values)
 
 stop("do not save in git folder!")
-saveRDS(silc.rph, file="GER_p1_inflation.RData")
-saveRDS(silc.rph2, file="GER_p2_inflation.RData")
+saveRDS(silc.rph, file="data/GER_p1_inflation.RData")
+saveRDS(silc.rph2, file="data/GER_p2_inflation.RData")
 
 # Fin -------------------------------------------------------------------------

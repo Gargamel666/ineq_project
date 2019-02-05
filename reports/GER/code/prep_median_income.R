@@ -25,8 +25,8 @@ library(convey)
 
 #get data 
 
-silc.p1 <- readRDS("GER_p1_inflation.RData")
-silc.p2 <- readRDS("GER_p2_inflation.RData")
+silc.p1 <- readRDS("data/GER_p1_inflation.RData")
+silc.p2 <- readRDS("data/GER_p2_inflation.RData")
 
 
 silc.p1.svy <- svydesign(ids =  ~ id_h,
@@ -198,9 +198,9 @@ middleclass.many <-
 colnames(middleclass.many) <- headers
 
 # save tables
-saveRDS(middleclass.p1, file="GER_middleclass_p1.RData")
-saveRDS(middleclass.p2, file="GER_middleclass_p2.RData")
-saveRDS(middleclass.many, file="GER_middleclass_many.RData")
-saveRDS(middleclass.two, file="GER_middleclass_two.RData")
-saveRDS(middleclass.single, file="GER_middleclass_single.RData")
-saveRDS(middleclass.old, file="GER_middleclass_old.RData")
+saveRDS(middleclass.p1, file="reports/GER/tables/GER_middleclass_p1.RData")
+saveRDS(middleclass.p2, file="reports/GER/tables/GER_middleclass_p2.RData")
+saveRDS(middleclass.many, file="reports/GER/tables/GER_middleclass_many.RData")
+saveRDS(middleclass.two, file="reports/GER/tables/GER_middleclass_two.RData")
+saveRDS(middleclass.single, file="reports/GER/tables/GER_middleclass_single.RData")
+saveRDS(middleclass.old, file="reports/GER/tables/GER_middleclass_old.RData")
