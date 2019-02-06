@@ -173,7 +173,7 @@ Die Ergebnisse zeigen, dass Median und Mittelwert der verschiedenen Einkommensko
 
 Das betsätig unsere These, dass sich hinter der scheinbar gemäßigten Ungleichheitsentwicklung ab Mitte der Nullerjahre verschiedene Trends verbergen, dazu gehören der wachsende Einkommensanteil der reichsten zehn Prozent. Die Ergebnisse bestätigen einen sinkenden Anteil der Mittelschicht zwischen 2005 und 2017 von 56 Prozent auf 51 Prozent. Durch die Aufspaltung in obere, untere und eng definierte Mittelschicht wird ersichtlich, dass diese Abnahme durch eine Verringerung der oberen und eng definierten Mittelschicht erfolgt. Die untere Mittelschicht, welche von @niehues2017mittelschicht als einkommensschwach bezeichnet wird, verhält sich dazu gegenläufig und nimmt zu. Diese Entwicklung ist kohärent für die betrachteten Untergruppen, nämlich Haushalte mit 2 Kindern, Single Haushalte und Personen über 65 Jahren. Lediglich die Stärke der Veränderung zeigt Unterschiede auf, so sind die Single Haushalte am wenigsten von der Ausweitung der unteren Mittelschicht betroffen, während sich die obere und enge Mittelschicht vergleichsweise gering ändert. Im Gegensatz dazu sind bei den Personen über 65 Jahre die größte Veränderung zu beobachten, nicht nur wächst die untere Mittelschicht mehr als bei den Vergleichsgruppen auch die obere und enge Mittelschicht nimmt stärker ab. Es zeigt sich bei den alten Personen, die mit 65 Jahren zumeist im Rentenalter sind, dass die gesamte Mittelschicht lediglich um 1,97 Prozent abgenommen hat. Diese verhältnismäßig geringe Abnahme der Mittelschicht der älteren Bevölkerung basiert auf der starken Zunahme der unteren Mittelschicht welche die Verluste bei der engen und oberen Mittelschicht ausgleichen.
 
-
+TEST
 
 # Graphen 
 
