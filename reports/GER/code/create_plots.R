@@ -9,6 +9,7 @@ library(xts)
 library(dplyr)
 library(survey)
 library(convey)
+options(scipen=999)
 
 # load median income 
 middleclass.p1 <- readRDS("/data/GER_middleclass_p1.RData")
@@ -102,7 +103,7 @@ dev.off()
 
 png(file = "reports/GER/img/densityp11closer.png")
 plot(density(silc.p1.07$income_p1_1), main = "",
-     xlim = c(-5000, 50000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 35000), ylim = c(0, 7e-05))
 lines(density(silc.p1.12$income_p1_1), lty = 2)
 lines(density(silc.p1.17$income_p1_1), lty = 3)
 legend("topright", legend=c("2007", 
