@@ -7,27 +7,43 @@ library(ggplot2)
 library(dygraphs)
 library(xts)
 library(dplyr)
+library(survey)
+library(convey)
+options(scipen=999)
 
 #source("indicators_by_year.R")
 #source("prep_median_income.R")
 
 # load median income 
-middleclass.p1 <- readRDS("GER_middleclass_p1.RData")
-middleclass.p2 <- readRDS("GER_middleclass_p2.RData")
-middleclass.two <- readRDS("GER_middleclass_two.RData")
-middleclass.single <- readRDS("GER_middleclass_single.RData")
-middleclass.old <- readRDS("GER_middleclass_old.RData")
+middleclass.p1 <- readRDS("/data/GER_middleclass_p1.RData")
+middleclass.p2 <- readRDS("/data/GER_middleclass_p2.RData")
+middleclass.two <- readRDS("/data/GER_middleclass_two.RData")
+middleclass.single <- readRDS("/data/GER_middleclass_single.RData")
+middleclass.old <- readRDS("/data/GER_middleclass_old.RData")
 
 names <- c('year', 'upper', 'middle', 'lower', 'total', 'median')
 colnames(middleclass.p1) <- names
 
-# create plot
+# load p1 and p2
+silc.p1 <- readRDS("data/GER_p1_inflation.RData")
+silc.p2 <- readRDS("data/GER_p2_inflation.RData")
+
+
+silc.p1.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.p1) %>% convey_prep()
+
+silc.p2.svy <- svydesign(ids =  ~ id_h,
+                         weights = ~rb050,
+                         data = silc.p2) %>% convey_prep()
+
+options(scipen=999)
 
 
 # middle class development -----------------------------------------------------
 
 # Give the chart file a name.
-png(file = "middleclassp1_strict_total.jpg")
+png(file = "reports/GER/img/middleclassp1_strict_total.jpg")
 
 # Plot the bar chart.
 plot(middleclass.p1$year, middleclass.p1$middle, type = "o", xlab = "Year", ylab = "Percent", 
@@ -45,7 +61,7 @@ legend("topright", legend=c("Strict Middle Class",
 dev.off()
 
 # Give the chart file a name.
-png(file = "middleclassp1_upper_lower.jpg")
+png(file = "reports/GER/img/middleclassp1_upper_lower.jpg")
 
 # Plot the line chart.
 plot(middleclass.p1$year, middleclass.p1$upper, type = "o", xlab = "Year", ylab = "Percent", 
@@ -78,9 +94,9 @@ hist(silc.p1.06$income_p1_1)
 
 
 
-png(file = "densityp11.png")
+png(file = "reports/GER/img/densityp11.png")
 plot(density(silc.p1.07$income_p1_1), main = "",
-     xlim = c(0, 100000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 100000), ylim = c(0, 7e-05))
 lines(density(silc.p1.12$income_p1_1), lty = 2)
 lines(density(silc.p1.17$income_p1_1), lty = 3)
 legend("topright", legend=c("2007", 
@@ -88,9 +104,9 @@ legend("topright", legend=c("2007",
        lty=1:3, cex = 2)
 dev.off()
 
-png(file = "densityp11closer.png")
+png(file = "reports/GER/img/densityp11closer.png")
 plot(density(silc.p1.07$income_p1_1), main = "",
-     xlim = c(0, 50000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 35000), ylim = c(0, 7e-05))
 lines(density(silc.p1.12$income_p1_1), lty = 2)
 lines(density(silc.p1.17$income_p1_1), lty = 3)
 legend("topright", legend=c("2007", 
@@ -98,9 +114,9 @@ legend("topright", legend=c("2007",
        lty=1:3, cex = 2)
 dev.off()
 
-png(file = "densityp21.png")
+png(file = "reports/GER/img/densityp21.png")
 plot(density(silc.p2.07$income_p2_1), "",
-     xlim = c(0, 100000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 100000), ylim = c(0, 7e-05))
 lines(density(silc.p2.12$income_p2_1), lty = 2)
 lines(density(silc.p2.17$income_p2_1), lty = 3)
 legend("topright", legend=c("2007", 
@@ -109,9 +125,9 @@ legend("topright", legend=c("2007",
 dev.off()
 
 
-png(file = "densityp13.png")
+png(file = "reports/GER/img/densityp13.png")
 plot(density(silc.p1.07$income_p1_3), main = "",
-     xlim = c(0, 100000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 100000), ylim = c(0, 7e-05))
 lines(density(silc.p1.12$income_p1_3), lty = 2)
 lines(density(silc.p1.17$income_p1_3), lty = 3)
 legend("topright", legend=c("2007", 
@@ -119,9 +135,9 @@ legend("topright", legend=c("2007",
        lty=1:3, cex = 2)
 dev.off()
 
-png(file = "densityp13closer.png")
+png(file = "reports/GER/img/reports/GER/img/densityp13closer.png")
 plot(density(silc.p1.07$income_p1_3), main = "",
-     xlim = c(0, 50000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 50000), ylim = c(0, 7e-05))
 lines(density(silc.p1.12$income_p1_3), lty = 2)
 lines(density(silc.p1.17$income_p1_3), lty = 3)
 legend("topright", legend=c("2007", 
@@ -129,9 +145,9 @@ legend("topright", legend=c("2007",
        lty=1:3, cex = 2)
 dev.off()
 
-png(file = "densityp23.png")
+png(file = "reports/GER/img/densityp23.png")
 plot(density(silc.p2.07$income_p2_3), "",
-     xlim = c(0, 100000), ylim = c(0, 7e-05))
+     xlim = c(-5000, 100000), ylim = c(0, 7e-05))
 lines(density(silc.p2.12$income_p2_3), lty = 2)
 lines(density(silc.p2.17$income_p2_3), lty = 3)
 legend("topright", legend=c("2007", 
@@ -143,7 +159,7 @@ dev.off()
 
 library(ineq)
 
-png(file = "Lorenzp1.png")
+png(file = "reports/GER/img/Lorenzp1.png")
 plot(Lc(silc.p1.17$income_p1_1), main = "")
 lines(Lc(silc.p1.17$income_p1_2), lty = 2)
 lines(Lc(silc.p1.17$income_p1_3), lty = 3)
@@ -153,7 +169,7 @@ legend("topleft", legend=c("Pre-tax factor income",
 dev.off()
 
 
-png(file = "Lorenzp2.png")
+png(file = "reports/GER/img/Lorenzp2.png")
 plot(Lc(silc.p2.17$income_p2_1), main = "")
 lines(Lc(silc.p2.17$income_p2_2), lty = 2)
 lines(Lc(silc.p2.17$income_p2_3), lty = 3)
