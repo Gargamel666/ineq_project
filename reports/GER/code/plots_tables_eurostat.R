@@ -105,15 +105,15 @@ pov_plot
 
 qsr <- qsr %>% filter(geo == "DE", age == "TOTAL", sex == "T")  %>% rename( "S80/20" = "values")
 
-pov_plot <- ggplot() +
+S80S20_plot  <- ggplot() +
   geom_line(aes(y = qsr$"S80/20",x = qsr$time), color = "pink", size = 1) +
   labs(color = '', x = "Jahr", y = "P80/P20-Ratio", 
-       title = "P80/P20 Ratio (Äquivalenzeinkommens nach Sozialleistungen)",
+       title = "S80/S20 Ratio (Äquivalenzeinkommen nach Sozialleistungen)",
        subtitle = "1995 - 2017",
        caption = "Quelle: Eurostat") +
   expand_limits(y = c(3, 6)) + ggsave(file='P80P20_plot.svg',height=4,width=7)
 
-P80P20_plot  
+S80S20_plot  
 # TABELLE ---------------------------------------------------------------------
 
 indikatoren_bel <- data.frame(gini$time, mean$Mittelwert, median$Median, 
