@@ -111,7 +111,7 @@ S80S20_plot  <- ggplot() +
        title = "S80/S20 Ratio (Äquivalenzeinkommen nach Sozialleistungen)",
        subtitle = "1995 - 2017",
        caption = "Quelle: Eurostat") +
-  expand_limits(y = c(3, 6)) + ggsave(file='P80P20_plot.svg',height=4,width=7)
+  expand_limits(y = c(3, 6)) + ggsave(file='S80S20_plot.svg',height=4,width=7)
 
 S80S20_plot  
 # TABELLE ---------------------------------------------------------------------
